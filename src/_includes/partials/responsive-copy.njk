@@ -1,0 +1,7 @@
+{% macro text(full, compact) -%}
+{%- if compact -%}
+<span class="copy-desktop">{{ full }}</span><span class="copy-mobile">{{ compact }}</span>
+{%- else -%}
+{{ full }}
+{%- endif -%}
+{%- endmacro %}

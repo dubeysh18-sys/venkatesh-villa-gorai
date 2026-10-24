@@ -1,4 +1,5 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 {% set hero = gallery.slides | heroSlide %}
 <section class="hero" id="home">
   <div class="hero__media">
@@ -6,8 +7,8 @@
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
   <div class="container hero__content">
-    <span class="hero__eyebrow">{{ icon("leaf") }} {{ copy.hero.eyebrow }}</span>
-    <h1>{{ copy.hero.h1 }}</h1>
+    <span class="hero__eyebrow">{{ icon("leaf") }} {{ text(copy.hero.eyebrow, copy.hero.mobileEyebrow) }}</span>
+    <h1>{{ text(copy.hero.h1, copy.hero.mobileH1) }}</h1>
     <p class="hero__subline">{{ copy.hero.subline }}</p>
     <div class="hero__ctas">
       <a class="btn btn--primary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.stay) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="hero_stay">

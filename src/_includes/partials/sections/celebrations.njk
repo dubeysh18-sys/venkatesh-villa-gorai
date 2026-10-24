@@ -1,10 +1,11 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 <section class="section" id="celebrations">
   <div class="container">
     <div class="section__head section__head--center">
       <span class="eyebrow">{{ copy.celebrations.eyebrow }}</span>
-      <h2>{{ copy.celebrations.heading }}</h2>
-      <p>{{ copy.celebrations.intro }}</p>
+      <h2>{{ text(copy.celebrations.heading, copy.celebrations.mobileHeading) }}</h2>
+      <p>{{ text(copy.celebrations.intro, copy.celebrations.mobileIntro) }}</p>
     </div>
 
     <div class="celebrations__grid">
@@ -12,11 +13,11 @@
       <div class="event-card">
         <div>
           {{ icon(card.icon, "event-card__icon") }}
-          <h3>{{ card.title }}</h3>
-          <p>{{ card.line }}</p>
+          <h3>{{ text(card.title, card.mobileTitle) }}</h3>
+          <p>{{ text(card.line, card.mobileLine) }}</p>
         </div>
-        <a class="event-card__cta" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.event | replace('{event}', card.waLabel)) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="celebrations_{{ card.key }}">
-          Book on WhatsApp {{ icon("arrow-right") }}
+        <a class="event-card__cta" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.event | replace('{event}', card.waLabel)) }}" target="_blank" rel="noopener" aria-label="{{ copy.celebrations.mobileCtaLabel }}: {{ card.title }} — {{ copy.celebrations.ctaLabel }}" data-cta="whatsapp" data-cta-location="celebrations_{{ card.key }}">
+          {{ text(copy.celebrations.ctaLabel, copy.celebrations.mobileCtaLabel) }} {{ icon("arrow-right") }}
         </a>
       </div>
       {% endfor %}

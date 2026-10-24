@@ -1336,6 +1336,120 @@ h3,
   flex-wrap: wrap;
 }
 
+/* Alternate owner-editable wording shares the same heading/landmark. Only
+   the active version is exposed visually and to assistive technology. */
+.copy-mobile { display: none; }
+
+/* ---------- Phone layout: same visual language, less scrolling ---------- */
+@media screen and (max-width: 767px) {
+  /* The floating shortcut yields to a visible, in-page WhatsApp action. */
+  .whatsapp-float--redundant { visibility: hidden; pointer-events: none; }
+  .copy-desktop { display: none; }
+  .copy-mobile { display: inline; }
+  html { scroll-padding-top: 80px; }
+  .container { padding-inline: 20px; }
+  .section { padding-block: 40px; }
+  h2 { font-size: 27px; line-height: 1.2; text-wrap: balance; }
+  .section__head, .gallery__head { margin-bottom: 24px; }
+  .section__head--center { text-align: left; }
+  .section__head > p, .gallery__head p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-on-surface-variant);
+  }
+  .site-header__inner { height: 64px; gap: 8px; }
+  .site-header__brand { font-size: 18px; gap: 8px; }
+  .site-header__brand img { height: 32px; }
+  .site-header__actions { flex-shrink: 0; }
+  .mobile-nav__link { display: flex; align-items: center; min-height: 44px; }
+  .mobile-nav__list { gap: 4px; }
+  .mobile-nav { overflow-y: auto; }
+
+  .hero { min-height: 0; }
+  .hero__content { min-height: 580px; padding-block: 64px 24px; justify-content: flex-end; }
+  .hero__eyebrow { font-size: 10px; letter-spacing: .08em; padding: 6px 12px; margin-bottom: 16px; }
+  .hero h1 { font-size: 38px; line-height: 1.12; max-width: 9ch; margin-bottom: 24px; }
+  .hero__subline { display: none; }
+  .hero__ctas { display: grid; width: 100%; max-width: 280px; gap: 10px; margin-bottom: 32px; }
+  .hero__ctas .btn { min-height: 46px; padding: 10px 16px; }
+  .hero__chips { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 380px; gap: 8px; }
+  .chip { flex-direction: row; gap: 8px; padding: 10px 8px; border-radius: 12px; font-size: 12px; min-height: 42px; box-shadow: none; }
+  .chip svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .chip--wide { grid-column: 1 / -1; min-height: 28px; padding: 4px; background: transparent; color: #fff8f6; }
+  .chip--wide svg { color: #fff8f6; }
+
+  .gallery__head { gap: 0; }
+  .carousel__caption { padding: 24px 16px 14px; font-size: 18px; line-height: 1.3; }
+  .carousel__meta, .carousel__thumbs { margin-top: 12px; }
+
+  .celebrations__grid { gap: 12px; grid-auto-rows: 1fr; }
+  .event-card { padding: 16px 14px 8px; border: 1px solid var(--color-surface-container); box-shadow: none; border-radius: 14px; min-width: 0; }
+  .event-card__icon { width: 26px; height: 26px; margin-bottom: 10px; }
+  .event-card h3 { font-size: 18px; line-height: 1.25; margin-bottom: 8px; overflow-wrap: break-word; }
+  .event-card p { font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
+  .event-card__cta { min-height: 44px; justify-content: space-between; font-size: 13px; font-weight: 600; border-top: 1px solid var(--color-outline-variant); }
+  .event-card__cta svg { flex-shrink: 0; }
+  .celebrations__note { margin-top: 16px; padding: 14px; font-size: 13px; line-height: 1.5; }
+
+  .stays__grid { gap: 24px; }
+  .stays__intro { margin-top: 10px; font-size: 14px; line-height: 1.55; }
+  .stays__tiles { margin-top: 20px; gap: 8px; }
+  .stays-tile { padding: 12px 10px; gap: 8px; border-radius: 10px; }
+  .stays-tile__text { min-width: 0; }
+  .stays-tile__label { font-size: 13px; line-height: 1.35; }
+  .stays-tile__sub { font-size: 12px; line-height: 1.4; margin-top: 3px; }
+  .stays__chips { gap: 6px; }
+  .stays__chip { padding: 4px 10px; }
+  .stays__chip svg { flex-shrink: 0; }
+  .stays__ctas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
+  .stays__ctas .btn { padding: 10px; min-height: 46px; }
+  .stays__ctas [data-cta="airbnb"] { grid-column: 1 / -1; }
+
+  /* Full-width rows keep long place names readable without enormous cards. */
+  .nearby__grid { grid-template-columns: 1fr; gap: 12px; }
+  .attraction-card { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; padding: 16px; border: 1px solid var(--color-outline-variant); border-radius: 14px; box-shadow: none; }
+  .attraction-card__icon { grid-column: 1; grid-row: 1 / 4; width: 26px; height: 26px; margin: 2px 0 0; }
+  .attraction-card h3 { grid-column: 2; font-size: 18px; line-height: 1.3; margin-bottom: 6px; }
+  .attraction-card p { grid-column: 2; font-size: 13px; line-height: 1.5; margin-bottom: 4px; }
+  .attraction-card__meta { grid-column: 2; gap: 8px; flex-wrap: wrap; }
+  .attraction-card__link { display: inline-flex; align-items: center; min-height: 44px; }
+
+  .location__grid { gap: 24px; }
+  .location__intro { margin-top: 10px; font-size: 14px; line-height: 1.55; }
+  .journey__heading { margin: 24px 0 16px; font-size: 14px; line-height: 1.5; }
+  .journey { margin-bottom: 24px; }
+  .journey__stop { align-items: stretch; }
+  .journey__node { flex-direction: row; gap: 14px; text-align: left; }
+  .journey__node svg { width: 20px; height: 20px; padding: 10px; box-shadow: none; background: var(--color-surface-container-low); }
+  .journey__node-label { max-width: none; font-size: 14px; }
+  .journey__connector { position: relative; align-items: flex-start; margin-left: 20px; padding: 8px 0 8px 34px; min-height: 32px; border-left: 2px solid var(--color-outline-variant); font-size: 12px; font-weight: 500; }
+  .journey__connector-line { display: none; }
+  .by-car { padding: 18px; border-radius: 14px; background: var(--color-surface-container-low); box-shadow: none; }
+  .by-car__heading { font-size: 20px; }
+  .by-car .btn { width: 100%; }
+
+  .contact-card { padding: 28px 20px; border-radius: 20px; }
+  .contact-card__intro { margin: 12px auto 20px; font-size: 14px; line-height: 1.55; }
+  .contact-card__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .contact-card__actions .btn { flex-direction: column; gap: 6px; padding: 12px 4px; border-radius: 14px; font-size: 14px; box-shadow: none; }
+  .contact-card__button-text { display: flex; flex-direction: column; gap: 2px; }
+  .contact-card__number { font-size: 12px; white-space: nowrap; }
+  .contact-card__links { margin-top: 16px; gap: 24px; }
+  .contact-card__links a { min-height: 44px; }
+
+  .faq-list { gap: 10px; }
+  .faq-item { padding: 8px 16px; border-radius: 12px; }
+  .faq-item summary { min-height: 56px; padding-block: 8px; font-size: 18px; line-height: 1.35; gap: 12px; }
+  .faq-item summary svg { width: 20px; height: 20px; }
+  .faq-item__answer { margin-top: 6px; padding-bottom: 10px; font-size: 14px; line-height: 1.6; }
+
+  .site-footer { padding-block: 32px calc(88px + env(safe-area-inset-bottom)); }
+  .site-footer__links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; gap: 0 12px; }
+  .site-footer__links a, .site-footer__social a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+  .site-footer__inner > div > p { margin-top: 12px; font-size: 12px; }
+}
+
 /* ---------- Print / "Save as PDF" ---------- */
 @media print {
   /* Browsers drop background colors/images by default when printing --

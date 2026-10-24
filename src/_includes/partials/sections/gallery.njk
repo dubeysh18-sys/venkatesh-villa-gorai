@@ -1,13 +1,14 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 {% set slides = gallery.slides | visibleSlides %}
 <section class="section" id="gallery">
   <div class="container">
     <div class="gallery__head">
       <div>
-        <span class="eyebrow">Photo gallery</span>
-        <h2>A look around the villa</h2>
+        <span class="eyebrow">{{ copy.gallery.eyebrow }}</span>
+        <h2>{{ copy.gallery.heading }}</h2>
       </div>
-      <p>Real photos of Venkatesh Villa Gorai &mdash; the facade, grounds and a few rooms. More get added as we photograph the rest.</p>
+      <p>{{ text(copy.gallery.intro, copy.gallery.mobileIntro) }}</p>
     </div>
 
     <section class="carousel"

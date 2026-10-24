@@ -1,13 +1,14 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 <section class="section" id="location">
   <div class="container">
     <div class="location__grid">
       <div>
         <span class="eyebrow">{{ copy.location.eyebrow }}</span>
-        <h2>{{ copy.location.heading }}</h2>
-        <p class="location__intro">{{ copy.location.intro }}</p>
+        <h2>{{ text(copy.location.heading, copy.location.mobileHeading) }}</h2>
+        <p class="location__intro">{{ text(copy.location.intro, copy.location.mobileIntro) }}</p>
 
-        <h3 class="journey__heading">{{ copy.location.stepperHeading }}</h3>
+        <h3 class="journey__heading">{{ text(copy.location.stepperHeading, copy.location.mobileStepperHeading) }}</h3>
         <ol class="journey" aria-label="Route from Borivali station to Venkatesh Villa">
           {% for stop in copy.location.journey %}
           <li class="journey__stop">

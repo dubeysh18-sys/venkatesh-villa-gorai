@@ -1,5 +1,32 @@
 # HANDOFF: Venkatesh Villa Gorai website
-Last updated: 2026-10-24 by Codex (GitHub Pages deployment)
+Last updated: 2026-10-24 by Codex (mobile layout review)
+
+## Mobile layout review (24 October 2026)
+
+- Owner requested a substantially more compact phone presentation while
+  preserving the approved desktop design. Four WhatsApp screenshots supplied.
+- Implemented phone overrides in `main.css` below 768px, concise `mobile*`
+  fields in `copy.json` / `mobileLine` in `attractions.json`, and a small
+  `responsive-copy.njk` macro. Desktop copy/layout preserved.
+- Short hero without the byline, compact equal-height 2-column events,
+  nearby attraction rows, connected left-aligned route timeline, aligned stays
+  and contact buttons, smaller FAQ spacing, and wrapping footer navigation.
+- `main.js`: IntersectionObserver hides the floating WhatsApp shortcut on
+  phones while a WhatsApp link in main is visible, preventing redundant overlap.
+- Playwright checks pass at 360, 390, 430, 768, 1024 and 1440px: heading count,
+  text/button bounds, equal mobile event cards, 44px main tap targets, menu
+  open/Escape, gallery next, FAQ exclusivity, floating CTA behavior. No-JS
+  mobile content and native exclusive FAQ also pass.
+- Desktop screenshots for six changed sections are pixel-identical to the
+  baseline; Contact dimensions match with only 90 changed colour channels.
+- Screenshots and scripts: ignored `design-references/mobile-review/`.
+- Final 390px heights: hero 580px (was 916), events 1163px (was 2364),
+  nearby 1057px (was 1932), route timeline 280px (was 496). Event cards
+  are all 214px tall at both 360px and 390px.
+- `npm run build` and `npm run check:full` passed existing gates: zero HTML
+  errors / 99 links valid; Lighthouse Accessibility 100, Best Practices 100,
+  Performance 91 (existing warning policy), SEO 69 (intentional noindex).
+- Next: push this commit, verify GitHub CI and the updated public page.
 
 ## Deployment continuation (2026-10-24)
 

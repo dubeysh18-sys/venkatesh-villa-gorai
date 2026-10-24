@@ -1,4 +1,5 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 <section class="section section--alt" id="stays">
   <div class="container">
     <div class="stays__grid">
@@ -10,7 +11,7 @@
       <div class="stays__content">
         <span class="eyebrow">{{ copy.stays.eyebrow }}</span>
         <h2>{{ copy.stays.heading }}</h2>
-        <p class="stays__intro">{{ copy.stays.intro }}</p>
+        <p class="stays__intro">{{ text(copy.stays.intro, copy.stays.mobileIntro) }}</p>
 
         <ul class="stays__tiles">
           {% for tile in copy.stays.tiles %}
@@ -37,7 +38,7 @@
 
         <div class="stays__ctas">
           <a class="btn btn--primary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.stay) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="stays">
-            {{ icon("chat") }} {{ copy.stays.ctaWhatsapp }}
+            {{ icon("chat") }} {{ text(copy.stays.ctaWhatsapp, copy.stays.mobileCtaWhatsapp) }}
           </a>
           <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="stays">
             {{ icon("phone") }} {{ copy.stays.ctaCall }}

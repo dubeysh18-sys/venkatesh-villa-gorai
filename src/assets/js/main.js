@@ -225,6 +225,23 @@
     });
   });
 
+  /* On phones, avoid covering cards/buttons with a duplicate WhatsApp CTA.
+     Without JS the regular floating shortcut remains available. */
+  var floatingWhatsapp = document.querySelector(".whatsapp-float");
+  if (floatingWhatsapp && "IntersectionObserver" in window) {
+    var visibleWhatsapp = new Set();
+    var whatsappObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) visibleWhatsapp.add(entry.target);
+        else visibleWhatsapp.delete(entry.target);
+      });
+      floatingWhatsapp.classList.toggle("whatsapp-float--redundant", visibleWhatsapp.size > 0);
+    }, { rootMargin: "-80px 0px 0px", threshold: 0 });
+    document.querySelectorAll('main [data-cta="whatsapp"]').forEach(function (link) {
+      whatsappObserver.observe(link);
+    });
+  }
+
   /* ---------------- GA4 click tracking ---------------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-cta]");

@@ -1,17 +1,18 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 <section class="section" id="contact">
   <div class="container">
     <div class="contact-card">
       <span class="eyebrow">{{ copy.contact.eyebrow }}</span>
-      <h2>{{ copy.contact.heading }}</h2>
-      <p class="contact-card__intro">{{ copy.contact.intro }}</p>
+      <h2>{{ text(copy.contact.heading, copy.contact.mobileHeading) }}</h2>
+      <p class="contact-card__intro">{{ text(copy.contact.intro, copy.contact.mobileIntro) }}</p>
 
       <div class="contact-card__actions">
         <a class="btn btn--whatsapp" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="contact">
-          {{ icon("chat") }} {{ copy.contact.whatsappLabel }} ({{ site.whatsappDisplay }})
+          {{ icon("chat") }} <span class="contact-card__button-text">{{ text(copy.contact.whatsappLabel, copy.contact.mobileWhatsappLabel) }} <span class="contact-card__number">({{ site.whatsappDisplay }})</span></span>
         </a>
         <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="contact">
-          {{ icon("phone") }} {{ copy.contact.callLabel }}&nbsp;{{ site.phoneDisplay }}
+          {{ icon("phone") }} <span class="contact-card__button-text">{{ copy.contact.callLabel }}&nbsp;<span class="contact-card__number">{{ site.phoneDisplay }}</span></span>
         </a>
       </div>
 

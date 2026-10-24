@@ -103,6 +103,13 @@ The Reviews section on the site only appears once this file has at least one ent
 
 ## 5. Go live on GitHub Pages (free)
 
+**Changing mobile wording:** `src/_data/copy.json` has shorter phone versions
+in fields beginning with `mobile` (for example `mobileH1` and `mobileIntro`).
+Nearby cards use `mobileLine` in `src/_data/attractions.json`. Edit these to
+change phone copy without changing the desktop wording. The phone hero hides
+the longer byline automatically; all screen sizes still use the same photos
+and booking links.
+
 Website address: **https://dubeysh18-sys.github.io/venkatesh-villa-gorai/**.
 The repository is `dubeysh18-sys/venkatesh-villa-gorai`. GitHub Pages uses
 GitHub Actions and HTTPS. Future pushes to `main` rebuild this address.

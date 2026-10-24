@@ -1,5 +1,45 @@
 # Design notes: Venkatesh Villa Gorai
 
+## Mobile review — 24 October 2026
+
+Owner's four phone screenshots supersede the original mobile adaptation.
+They show oversized event cards, lengthy nearby cards, a tall centred travel
+route, and an overcrowded hero. Desktop styling is explicitly preserved.
+
+- Phone-only overrides apply below 768px; the original colours, fonts, photos,
+  section order and desktop layouts remain. Section spacing is 40px, card gaps
+  12px, and event cards use compact 18px headings and 13px descriptions.
+- Hero: short brand H1 and 4BHK/location eyebrow, no byline on phones, two
+  aligned CTAs, a 2×2 amenity grid and a light caretaker line. Height at 390px
+  drops from 916px to 580px, leaving substantially more of the photo visible.
+- Events: eight equal-height cards in two columns; short descriptions and
+  an Enquire link with an event-specific accessible WhatsApp label. Haldi,
+  mehendi and sangeet remain one event option. Desktop copy stays intact.
+- Nearby: six compact rows with an icon column and readable place names;
+  distance and directions align below. No truncated names or text clamping.
+- Route: left-aligned ordered timeline with each travel mode/time between
+  its stops, replacing the tall centred mobile layout.
+- Stays: aligned icon tiles and a two-column WhatsApp/Call action row; Airbnb
+  spans the row below. Contact uses two labelled action tiles with phone numbers.
+- FAQs and footer receive phone spacing and properly wrapping navigation.
+- Floating WhatsApp yields to visible in-page WhatsApp actions on phones;
+  desktop is unchanged and the no-JS fallback keeps the floating shortcut.
+
+All abbreviated copy is in `copy.json` (`mobile*` keys) or `attractions.json`
+(`mobileLine`). The responsive-copy macro uses CSS display switching, so only
+one version is exposed to assistive technology. One H1 remains; title/meta,
+canonical, FAQ text, phone numbers and booking destinations are unchanged.
+
+Screenshots, comparison metrics and Playwright checks are stored locally in
+`design-references/mobile-review/` (ignored by Git and never deployed).
+Before/after 1440px screenshots of Hero, Events, Stays, Nearby, Location and
+FAQs are pixel-identical; Contact has identical dimensions and only a tiny
+text rasterization difference from its inline wrappers.
+
+Intentional deviations: the phone H1 and headings are shortened, the hero
+byline is hidden, and the floating shortcut is suppressed while another
+WhatsApp action is visible, following this explicit owner review.
+
 ## Source
 
 `design-references/stitch/` contains the Google Stitch export:

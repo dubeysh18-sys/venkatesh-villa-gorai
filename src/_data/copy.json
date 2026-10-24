@@ -4,14 +4,38 @@
     "description": "Private 4BHK villa near Gorai Beach, Mumbai. Lawn, rooftop gazebo & games for weekend stays, birthdays, haldi, mehendi & team outings. WhatsApp to book."
   },
   "nav": [
-    { "label": "Gallery", "href": "#gallery" },
-    { "label": "Celebrations", "href": "#celebrations" },
-    { "label": "Stays", "href": "#stays" },
-    { "label": "Nearby", "href": "#nearby" },
-    { "label": "Location", "href": "#location" },
-    { "label": "Reviews", "href": "#reviews" },
-    { "label": "Contact", "href": "#contact" },
-    { "label": "FAQs", "href": "#faq" }
+    {
+      "label": "Gallery",
+      "href": "#gallery"
+    },
+    {
+      "label": "Celebrations",
+      "href": "#celebrations"
+    },
+    {
+      "label": "Stays",
+      "href": "#stays"
+    },
+    {
+      "label": "Nearby",
+      "href": "#nearby"
+    },
+    {
+      "label": "Location",
+      "href": "#location"
+    },
+    {
+      "label": "Reviews",
+      "href": "#reviews"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    },
+    {
+      "label": "FAQs",
+      "href": "#faq"
+    }
   ],
   "whatsappMessages": {
     "stay": "Hi! I found Venkatesh Villa Gorai on your website. I'd like to check availability for a stay. Dates: __ | Guests: __",
@@ -24,21 +48,61 @@
     "subline": "Weekend stays, birthdays, haldi & mehendi, anniversaries and team outings, with a lawn, rooftop gazebo and sunset views.",
     "ctaStay": "Check dates on WhatsApp",
     "ctaEvent": "Plan an event",
-    "trustChips": ["4 Bedrooms", "3 Bathrooms", "Lawn", "Rooftop Gazebo", "Caretaker on-site"]
+    "trustChips": [
+      "4 Bedrooms",
+      "3 Bathrooms",
+      "Lawn",
+      "Rooftop Gazebo",
+      "Caretaker on-site"
+    ],
+    "mobileH1": "Venkatesh Villa Gorai",
+    "mobileEyebrow": "Private 4BHK · Near Gorai Beach"
   },
   "stays": {
     "eyebrow": "Overnight staycations",
     "heading": "Weekend stays in Gorai",
     "intro": "The whole villa, lawn and rooftop, just for your group. A quiet break 5 minutes from Gorai Beach, without leaving Mumbai.",
     "tiles": [
-      { "icon": "lock", "label": "Entire villa", "sub": "one group at a time" },
-      { "icon": "bed", "label": "4 bedrooms", "sub": "across 2 floors" },
-      { "icon": "bath", "label": "3 bathrooms", "sub": "with hot water" },
-      { "icon": "users", "label": "Up to 15 guests", "sub": "for overnight stays" },
-      { "icon": "sun", "label": "Lawn & rooftop", "sub": "swing + sunset gazebo" },
-      { "icon": "racket", "label": "Games", "sub": "badminton & table tennis" },
-      { "icon": "utensils", "label": "Kitchen + caretaker", "sub": "cook or get help" },
-      { "icon": "car", "label": "Parking", "sub": "gated, walled compound" }
+      {
+        "icon": "lock",
+        "label": "Entire villa",
+        "sub": "one group at a time"
+      },
+      {
+        "icon": "bed",
+        "label": "4 bedrooms",
+        "sub": "across 2 floors"
+      },
+      {
+        "icon": "bath",
+        "label": "3 bathrooms",
+        "sub": "with hot water"
+      },
+      {
+        "icon": "users",
+        "label": "Up to 15 guests",
+        "sub": "for overnight stays"
+      },
+      {
+        "icon": "sun",
+        "label": "Lawn & rooftop",
+        "sub": "swing + sunset gazebo"
+      },
+      {
+        "icon": "racket",
+        "label": "Games",
+        "sub": "badminton & table tennis"
+      },
+      {
+        "icon": "utensils",
+        "label": "Kitchen + caretaker",
+        "sub": "cook or get help"
+      },
+      {
+        "icon": "car",
+        "label": "Parking",
+        "sub": "gated, walled compound"
+      }
     ],
     "chipFlexibleTimes": "Flexible check-in/out",
     "chipRates": "Rates vary by date & group size",
@@ -46,7 +110,9 @@
     "ctaCall": "Call",
     "ctaAirbnb": "Book on Airbnb",
     "airbnbAriaLabel": "Book Venkatesh Villa Gorai on Airbnb (opens in a new tab)",
-    "microcopy": "Airbnb is for overnight stays only. For celebrations and events, WhatsApp or call us."
+    "microcopy": "Airbnb is for overnight stays only. For celebrations and events, WhatsApp or call us.",
+    "mobileIntro": "The whole villa, lawn and rooftop, just for your group.",
+    "mobileCtaWhatsapp": "WhatsApp"
   },
   "celebrations": {
     "eyebrow": "Celebrations & events",
@@ -59,63 +125,79 @@
         "icon": "cake",
         "title": "Birthday parties",
         "line": "Balloons on the lawn, cake on the rooftop — birthdays your way.",
-        "waLabel": "birthday party"
+        "waLabel": "birthday party",
+        "mobileLine": "Cake, games & happy memories."
       },
       {
         "key": "anniversary",
         "icon": "heart",
         "title": "Anniversaries",
         "line": "A quiet toast under the gazebo for the two of you, or the whole family.",
-        "waLabel": "anniversary celebration"
+        "waLabel": "anniversary celebration",
+        "mobileLine": "A toast to your favourite person."
       },
       {
         "key": "haldi-mehendi-sangeet",
         "icon": "flower",
         "title": "Haldi, Mehendi & Sangeet",
         "line": "Bright haldi mornings on the lawn, relaxed mehendi afternoons and sangeet nights on the rooftop, all in one place.",
-        "waLabel": "haldi / mehendi / sangeet"
+        "waLabel": "haldi / mehendi / sangeet",
+        "mobileLine": "Lawn rituals & rooftop sangeet.",
+        "mobileTitle": "Haldi & mehendi"
       },
       {
         "key": "engagement",
         "icon": "rings",
         "title": "Engagement",
         "line": "A pretty backdrop and room enough for family and friends to celebrate.",
-        "waLabel": "engagement ceremony"
+        "waLabel": "engagement ceremony",
+        "mobileLine": "Bring your families together."
       },
       {
         "key": "wedding",
         "icon": "garland",
         "title": "Intimate weddings",
         "line": "Vows on the lawn, photos at sunset — a small, memorable wedding.",
-        "waLabel": "intimate wedding"
+        "waLabel": "intimate wedding",
+        "mobileLine": "Your vows. Your closest people."
       },
       {
         "key": "corporate",
         "icon": "briefcase",
         "title": "Corporate team outings",
         "line": "Break away from the boardroom with games, chai and open-air brainstorming.",
-        "waLabel": "corporate team outing"
+        "waLabel": "corporate team outing",
+        "mobileLine": "Games, chai & team time.",
+        "mobileTitle": "Team outings"
       },
       {
         "key": "picnic",
         "icon": "sun",
         "title": "Day picnic",
         "line": "A full day of lawn games, music and food — no overnight stay needed.",
-        "waLabel": "one-day picnic"
+        "waLabel": "one-day picnic",
+        "mobileLine": "Lawn games & a day together."
       },
       {
         "key": "nye",
         "icon": "sparkles",
         "title": "New Year's Eve",
         "line": "Countdown on the rooftop with the whole gang, away from the city crowds.",
-        "waLabel": "New Year's Eve party"
+        "waLabel": "New Year's Eve party",
+        "mobileLine": "A rooftop countdown."
       }
-    ]
+    ],
+    "mobileHeading": "Make it a celebration",
+    "mobileIntro": "Lawn, rooftop & dining deck. Space for 50+ guests.",
+    "ctaLabel": "Book on WhatsApp",
+    "mobileCtaLabel": "Enquire"
   },
   "nearby": {
     "eyebrow": "Explore Gorai",
     "heading": "Nearby attractions in Gorai",
-    "intro": "Gorai Beach, the Global Vipassana Pagoda and EsselWorld are all a short ride from the villa."
+    "intro": "Gorai Beach, the Global Vipassana Pagoda and EsselWorld are all a short ride from the villa.",
+    "mobileHeading": "Explore nearby",
+    "mobileIntro": "Beaches, landmarks & easy day trips."
   },
   "location": {
     "eyebrow": "Getting here",
@@ -124,13 +206,34 @@
     "mapCtaDirections": "Get directions",
     "stepperHeading": "By train + ferry (easiest from Borivali)",
     "journey": [
-      { "icon": "train", "label": "Borivali (W) Station" },
-      { "icon": "ferry", "label": "Gorai Jetty", "connectorMode": "Auto", "connectorTime": "15 min" },
-      { "icon": "leaf", "label": "Gorai side", "connectorMode": "Ferry", "connectorTime": "5 min" },
-      { "icon": "map-pin", "label": "Venkatesh Villa", "connectorMode": "Auto", "connectorTime": "15 min" }
+      {
+        "icon": "train",
+        "label": "Borivali (W) Station"
+      },
+      {
+        "icon": "ferry",
+        "label": "Gorai Jetty",
+        "connectorMode": "Auto",
+        "connectorTime": "15 min"
+      },
+      {
+        "icon": "leaf",
+        "label": "Gorai side",
+        "connectorMode": "Ferry",
+        "connectorTime": "5 min"
+      },
+      {
+        "icon": "map-pin",
+        "label": "Venkatesh Villa",
+        "connectorMode": "Auto",
+        "connectorTime": "15 min"
+      }
     ],
     "byCarHeading": "Coming by car?",
-    "byCarNote": "Google Maps will show you the best road route."
+    "byCarNote": "Google Maps will show you the best road route.",
+    "mobileHeading": "Getting to the villa",
+    "mobileIntro": "Culvem Village, Gorai. A 5-minute drive from Gorai Beach.",
+    "mobileStepperHeading": "From Borivali · Train + ferry"
   },
   "reviews": {
     "eyebrow": "Guest reviews",
@@ -149,9 +252,18 @@
     "intro": "Connect directly with us on WhatsApp for instant availability, or call to speak with us.",
     "whatsappLabel": "Chat on WhatsApp",
     "callLabel": "Call",
-    "instagramLabel": "Instagram"
+    "instagramLabel": "Instagram",
+    "mobileHeading": "Let’s plan your visit",
+    "mobileIntro": "Share your dates, group size and occasion.",
+    "mobileWhatsappLabel": "WhatsApp"
   },
   "footer": {
     "tagline": "Made with ♥ in Gorai"
+  },
+  "gallery": {
+    "eyebrow": "Photo gallery",
+    "heading": "A look around the villa",
+    "intro": "Real photos of Venkatesh Villa Gorai — the facade, grounds and a few rooms. More get added as we photograph the rest.",
+    "mobileIntro": "A closer look at your Gorai getaway."
   }
 }

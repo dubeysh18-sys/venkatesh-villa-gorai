@@ -4,41 +4,47 @@
     "line": "Sunsets and evening walks, just a 5-minute drive from the villa.",
     "distance": "5 min drive",
     "icon": "beach",
-    "destination": "Gorai Beach, Mumbai"
+    "destination": "Gorai Beach, Mumbai",
+    "mobileLine": "Sunsets & evening walks."
   },
   {
     "name": "Global Vipassana Pagoda",
     "line": "A landmark golden pagoda and meditation centre, visible from the villa's rooftop.",
     "distance": "approx. 20 min drive",
     "icon": "pagoda",
-    "destination": "Global Vipassana Pagoda, Mumbai"
+    "destination": "Global Vipassana Pagoda, Mumbai",
+    "mobileLine": "Golden pagoda & meditation centre."
   },
   {
     "name": "EsselWorld & Water Kingdom",
     "line": "Mumbai's well-known amusement and water parks, good for a family day out.",
     "distance": "approx. 15 min drive",
     "icon": "ferris-wheel",
-    "destination": "EsselWorld, Gorai, Mumbai"
+    "destination": "EsselWorld, Gorai, Mumbai",
+    "mobileLine": "Amusement & water parks."
   },
   {
     "name": "Manori Beach",
     "line": "A quieter beach nearby, with simple seafood shacks along the shore.",
     "distance": "approx. 20 min drive",
     "icon": "beach",
-    "destination": "Manori Beach, Mumbai"
+    "destination": "Manori Beach, Mumbai",
+    "mobileLine": "Quiet shores & seafood shacks."
   },
   {
     "name": "Uttan Beach & Our Lady of Velankanni Shrine",
     "line": "A hilltop shrine with sea views, close to Uttan's own quiet beach.",
     "distance": "approx. 30 min drive",
     "icon": "shrine",
-    "destination": "Our Lady of Velankanni Shrine, Uttan, Mumbai"
+    "destination": "Our Lady of Velankanni Shrine, Uttan, Mumbai",
+    "mobileLine": "Sea views, a hilltop shrine & beach."
   },
   {
     "name": "Keshav Srushti",
     "line": "A sprawling green campus in Uttan with nature trails, a medicinal plant garden, a heritage lake and a gaushala, perfect for a calm morning outing.",
     "distance": "approx. 25 min drive",
     "icon": "leaf",
-    "destination": "Keshav Srushti, Uttan, Bhayandar West"
+    "destination": "Keshav Srushti, Uttan, Bhayandar West",
+    "mobileLine": "Nature trails, gardens & a heritage lake."
   }
 ]

@@ -1,10 +1,11 @@
 {% from "partials/icons.njk" import icon %}
+{% from "partials/responsive-copy.njk" import text %}
 <section class="section section--alt" id="nearby">
   <div class="container">
     <div class="section__head section__head--center">
       <span class="eyebrow">{{ copy.nearby.eyebrow }}</span>
-      <h2>{{ copy.nearby.heading }}</h2>
-      <p>{{ copy.nearby.intro }}</p>
+      <h2>{{ text(copy.nearby.heading, copy.nearby.mobileHeading) }}</h2>
+      <p>{{ text(copy.nearby.intro, copy.nearby.mobileIntro) }}</p>
     </div>
 
     <div class="nearby__grid">
@@ -12,7 +13,7 @@
       <div class="attraction-card">
         {{ icon(place.icon, "attraction-card__icon") }}
         <h3>{{ place.name }}</h3>
-        <p>{{ place.line }}</p>
+        <p>{{ text(place.line, place.mobileLine) }}</p>
         <div class="attraction-card__meta">
           <span class="attraction-card__distance">{{ place.distance }}</span>
           <a class="attraction-card__link" href="https://www.google.com/maps/dir/?api=1&destination={{ place.destination | urlencode }}" target="_blank" rel="noopener">Directions</a>
