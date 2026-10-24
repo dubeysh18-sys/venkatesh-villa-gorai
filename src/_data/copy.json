@@ -5,12 +5,12 @@
   },
   "nav": [
     { "label": "Gallery", "href": "#gallery" },
-    { "label": "Stays", "href": "#stays" },
     { "label": "Celebrations", "href": "#celebrations" },
+    { "label": "Stays", "href": "#stays" },
     { "label": "Nearby", "href": "#nearby" },
     { "label": "Location", "href": "#location" },
     { "label": "Reviews", "href": "#reviews" },
-    { "label": "FAQ", "href": "#faq" },
+    { "label": "FAQs", "href": "#faq" },
     { "label": "Contact", "href": "#contact" }
   ],
   "whatsappMessages": {

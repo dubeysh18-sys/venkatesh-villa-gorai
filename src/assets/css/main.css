@@ -15,6 +15,11 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Keeps every #anchor jump (nav links, "How to reach" link, FAQ
+     auto-scroll) from landing a section's heading underneath the 72px
+     sticky header. Respected by both native anchor navigation and
+     Element.scrollIntoView() in current browsers. */
+  scroll-padding-top: 88px;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
