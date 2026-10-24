@@ -1,6 +1,8 @@
 node_modules/
 _site/
 .cache/
+.env
+.env.*
 .DS_Store
 Thumbs.db
 *.log
@@ -8,3 +10,7 @@ Thumbs.db
 npm-debug.log*
 .lighthouseci/
 lh-*.json
+
+# Owner's Google Stitch screenshots + internal review-round screenshots --
+# source material only, never meant to be public. See AGENTS.md Section 0.2.
+design-references/
