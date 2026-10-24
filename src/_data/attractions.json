@@ -21,13 +21,6 @@
     "destination": "EsselWorld, Gorai, Mumbai"
   },
   {
-    "name": "Gorai–Borivali ferry jetty",
-    "line": "The quickest way across the creek from Borivali, and part of the fun of getting here.",
-    "distance": "approx. 15 min drive",
-    "icon": "ferry",
-    "destination": "Gorai Jetty, Mumbai"
-  },
-  {
     "name": "Manori Beach",
     "line": "A quieter beach nearby, with simple seafood shacks along the shore.",
     "distance": "approx. 20 min drive",
@@ -40,6 +33,13 @@
     "distance": "approx. 30 min drive",
     "icon": "shrine",
     "destination": "Our Lady of Velankanni Shrine, Uttan, Mumbai"
+  },
+  {
+    "name": "Keshav Srushti",
+    "line": "A sprawling green campus in Uttan with nature trails, a medicinal plant garden, a heritage lake and a gaushala, perfect for a calm morning outing.",
+    "distance": "approx. 25 min drive",
+    "icon": "leaf",
+    "destination": "Keshav Srushti, Uttan, Bhayandar West"
   },
   {
     "name": "Gorai mangroves & village lanes",

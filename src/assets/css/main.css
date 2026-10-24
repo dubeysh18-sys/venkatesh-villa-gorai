@@ -864,6 +864,11 @@ h3,
   .nearby__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  /* If the last card is alone in the final row of a 3-column grid (e.g. 7
+     cards -> 3+3+1), centre it instead of leaving it stranded on the left. */
+  .nearby__grid > :last-child:nth-child(3n + 1) {
+    grid-column: 2 / 3;
+  }
 }
 .attraction-card {
   background: var(--color-surface-container-low);
