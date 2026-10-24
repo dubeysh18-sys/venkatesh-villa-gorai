@@ -7,19 +7,27 @@
         <h2>{{ copy.location.heading }}</h2>
         <p class="location__intro">{{ copy.location.intro }}</p>
 
-        <div class="howto-steps">
-          {% for step in copy.location.howToReachSteps %}
-          <div class="howto-step">
-            {{ icon(step.icon) }}
-            <span class="howto-step__label">{{ step.label }}</span>
-            <p>{{ step.text }}</p>
-          </div>
+        <h3 class="journey__heading">{{ copy.location.stepperHeading }}</h3>
+        <ol class="journey" aria-label="Route from Borivali station to Venkatesh Villa">
+          {% for stop in copy.location.journey %}
+          <li class="journey__stop">
+            {% if stop.connectorMode %}
+            <div class="journey__connector">
+              <span class="journey__connector-line" aria-hidden="true"></span>
+              <span class="journey__connector-label">{{ stop.connectorMode }}{% if stop.connectorTime %} &middot; {{ stop.connectorTime }}{% endif %}</span>
+            </div>
+            {% endif %}
+            <div class="journey__node">
+              {{ icon(stop.icon) }}
+              <span class="journey__node-label">{{ stop.label }}</span>
+            </div>
+          </li>
           {% endfor %}
-        </div>
+        </ol>
 
-        <p class="location__by-car">{{ icon("navigation") }} {{ copy.location.byCarNote }}</p>
-
-        <div class="location__actions">
+        <div class="by-car">
+          <h3 class="by-car__heading">{{ copy.location.byCarHeading }}</h3>
+          <p>{{ copy.location.byCarNote }}</p>
           <a class="btn btn--primary" href="{{ site.googleDirectionsUrl }}" target="_blank" rel="noopener">
             {{ icon("navigation") }} {{ copy.location.mapCtaDirections }}
           </a>

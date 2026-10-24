@@ -919,57 +919,103 @@ h3,
   color: var(--color-on-surface-variant);
   margin-top: var(--space-md);
 }
-.howto-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-sm);
-  margin-block: var(--space-lg);
+.journey__heading {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-body-md);
+  color: var(--color-on-surface);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
-.howto-step {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
+
+/* The "How to reach" journey: one connected route, not separate boxes.
+   Marked up as an <ol> (Section 7.7); each <li> is [connector][node], so
+   laying the list out as a row (desktop) or column (mobile) naturally
+   reads in the right order either way -- see DESIGN_NOTES.md. */
+.journey {
+  list-style: none;
+  margin: 0 0 var(--space-lg);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.journey__stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.journey__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
   text-align: center;
+  flex-shrink: 0;
+}
+.journey__node svg {
+  width: 24px;
+  height: 24px;
+  padding: 12px;
+  box-sizing: content-box;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-}
-.howto-step svg {
-  width: 28px;
-  height: 28px;
   color: var(--color-primary);
-  margin-bottom: var(--space-xs);
 }
-.howto-step__label {
-  display: block;
+.journey__node-label {
+  font-size: var(--fs-label-sm);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  max-width: 8rem;
+}
+.journey__connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-secondary);
   font-weight: 700;
   font-size: var(--fs-label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-secondary);
+  white-space: nowrap;
+  padding-block: var(--space-sm);
+}
+.journey__connector-line {
+  width: 2px;
+  height: 20px;
+  background: var(--color-outline-variant);
+}
+@media (min-width: 1024px) {
+  .journey {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .journey__stop {
+    flex-direction: row;
+    align-items: center;
+  }
+  .journey__connector {
+    flex-direction: column-reverse;
+    padding-inline: var(--space-sm);
+  }
+  .journey__connector-line {
+    width: 32px;
+    height: 2px;
+  }
+}
+
+.by-car {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+.by-car__heading {
   margin-bottom: var(--space-xs);
 }
-.howto-step p {
-  font-size: var(--fs-body-sm);
-  color: var(--color-on-surface-variant);
-}
-.location__by-car {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-xs);
+.by-car p {
   color: var(--color-on-surface-variant);
   font-size: var(--fs-body-sm);
   margin-bottom: var(--space-md);
-}
-.location__by-car svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--color-primary);
-}
-.location__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
 }
 
 /* Google Maps embed, loaded directly (loading="lazy" keeps it from being
