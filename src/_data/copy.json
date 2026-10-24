@@ -49,7 +49,7 @@
     "eyebrow": "Celebrations & events",
     "heading": "Birthday parties, haldi & mehendi at our villa",
     "intro": "Our lawn, rooftop terrace and dining deck welcome 50+ guests for day events, with seating and space already in place.",
-    "partnerNote": "Catering & décor through our trusted partners, on request.",
+    "partnerNote": "In-house décor & catering available, or bring your own setup.",
     "cards": [
       {
         "key": "birthday",
@@ -66,25 +66,11 @@
         "waLabel": "anniversary celebration"
       },
       {
-        "key": "haldi",
+        "key": "haldi-mehendi-sangeet",
         "icon": "flower",
-        "title": "Haldi",
-        "line": "Bright yellow mandaps on green grass, with the whole clan around you.",
-        "waLabel": "haldi ceremony"
-      },
-      {
-        "key": "mehendi",
-        "icon": "sparkle",
-        "title": "Mehendi",
-        "line": "Comfortable seating and good light for a relaxed mehendi afternoon.",
-        "waLabel": "mehendi ceremony"
-      },
-      {
-        "key": "sangeet",
-        "icon": "music",
-        "title": "Sangeet",
-        "line": "Music on the rooftop terrace as the sun goes down over Gorai.",
-        "waLabel": "sangeet night"
+        "title": "Haldi, Mehendi & Sangeet",
+        "line": "Bright haldi mornings on the lawn, relaxed mehendi afternoons and sangeet nights on the rooftop, all in one place.",
+        "waLabel": "haldi / mehendi / sangeet"
       },
       {
         "key": "engagement",

@@ -779,13 +779,9 @@ h3,
 /* ---------- Celebrations ---------- */
 .celebrations__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-md);
-}
-@media (min-width: 640px) {
-  .celebrations__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  align-items: stretch;
 }
 @media (min-width: 1024px) {
   .celebrations__grid {
@@ -796,6 +792,7 @@ h3,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
   background: var(--color-surface-container-low);
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
