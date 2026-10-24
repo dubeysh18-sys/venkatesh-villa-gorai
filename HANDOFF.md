@@ -20,8 +20,11 @@ Last updated: 2026-10-24 by Codex (GitHub Pages deployment)
   100; Performance 91-94 and SEO 69 are warnings under the existing policy
   (SEO is reduced intentionally by staging noindex/robots settings).
 - Synced the lockfile's clean-css entry to the already-pinned package version.
-- Next action: push this deployment commit, then verify the Actions result
-  and public website.
+- First CI run of the deployment fixes passed build/HTML/links but Lighthouse
+  could not launch downloaded Chromium under Ubuntu's AppArmor sandbox rules.
+  Workflow now uses the runner's installed Google Chrome (sandbox retained),
+  removing the unpinned Playwright download. Next: verify the new CI run and
+  public website.
 
 The previous build notes below are historical; this deployment section
 supersedes statements that the repository has not been pushed or that

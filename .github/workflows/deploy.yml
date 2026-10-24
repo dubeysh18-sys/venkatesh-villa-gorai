@@ -30,10 +30,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Chromium (for Lighthouse CI)
+      # Use the runner's installed Chrome, whose sandbox is configured for
+      # Ubuntu. Downloaded Playwright Chromium cannot start under AppArmor.
+      - name: Select installed Chrome (for Lighthouse CI)
         run: |
-          npx playwright install --with-deps chromium
-          echo "CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -iname chrome -type f | head -1)" >> "$GITHUB_ENV"
+          CHROME_BIN="$(command -v google-chrome)"
+          "$CHROME_BIN" --version
+          echo "CHROME_PATH=$CHROME_BIN" >> "$GITHUB_ENV"
 
       # A project page (https://<user>.github.io/<repo>/) is served under a
       # sub-path, so every internal link must be prefixed with /<repo>/.
