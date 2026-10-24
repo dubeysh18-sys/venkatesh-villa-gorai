@@ -1,5 +1,5 @@
 # HANDOFF: Venkatesh Villa Gorai website
-Last updated: 2026-10-24 by Claude Code (Round 1 owner review applied)
+Last updated: 2026-10-24 by Claude Code (Round 2 owner review applied)
 
 ## Build steps
 - [x] 1 Scaffold & config
@@ -23,13 +23,16 @@ not a code task.
 **Everything works.** `npm run build` produces a complete `_site/`:
 header/nav (desktop + accessible mobile drawer), hero, photo gallery
 (accessible carousel + lightbox + thumbnails, all real `<img>`s in the
-server-rendered HTML), stays (with a secondary Airbnb option), 8
-celebrations cards (4x2 on desktop), 7 nearby-attraction cards,
-location (a connected "how to reach" journey stepper + a
-directly-embedded lazy-loaded map), reviews (hidden while
-`reviews.json` is empty), FAQ accordion, contact, footer (NAP +
-Instagram/Maps/Airbnb), and a floating WhatsApp button. 404 page
-included. See "Change rounds → Round 1" below for everything changed
+server-rendered HTML), 8 celebrations cards (4x2 on desktop), a
+compact icon-tile Stays section (with a "Book on Airbnb" button), 6
+nearby-attraction cards (3x2 on desktop), location (a connected "how
+to reach" journey stepper + a directly-embedded lazy-loaded map),
+reviews (hidden while `reviews.json` is empty), an exclusive-open FAQ
+accordion ("FAQs", first question open by default), contact, footer
+(NAP + Instagram/Maps/Airbnb), and a floating WhatsApp button. Page
+order: Hero → Gallery → Celebrations → Stays → Nearby → Location →
+Reviews → FAQ → Contact. 404 page included. See "Change rounds" below
+for everything changed in owner review rounds 1 and 2
 since the initial build.
 
 Verified with real tooling, not just a read-through:
@@ -265,6 +268,87 @@ still zero errors/zero broken links; Lighthouse mobile unchanged at
 Accessibility 100 / Best Practices 100 / SEO 100 (indexable:true) /
 Performance 94 — no regression from the new CSS (stepper, Airbnb
 card, print block).
+
+### Round 2 (2026-10-24): owner review of Round 1's build
+
+Note: the owner's instructions referenced reading a `CHANGES_ROUND_1.md`
+file first. That file doesn't exist — Round 1 was logged directly in
+this file (the section above) instead, so that's what was actually
+read. Worth flagging in case the owner expected a separate file; easy
+to split out later if wanted, nothing was lost either way.
+
+5 numbered changes, each committed separately:
+
+1. **Section order**: moved Stays to after Celebrations. New order:
+   Hero → Gallery → Celebrations → Stays → Nearby → Location →
+   Reviews → FAQ → Contact. Both the header nav and footer links read
+   from the same `copy.json` `nav` array, so reordering it once fixed
+   both automatically — no separate footer edit needed. While
+   verifying every anchor still scrolled correctly, found a
+   **pre-existing gap, not something this reorder caused**: there was
+   no `scroll-padding-top` anywhere, so every `#anchor` jump (nav
+   links, the FAQ's "How to reach" link from Round 1) had always been
+   landing with the target section's heading partly hidden under the
+   72px sticky header. Added `scroll-padding-top: 88px` to `html`;
+   re-tested all 7 nav links, all land with the section's top at or
+   below the header's bottom edge now.
+2. **Nearby attractions**: removed "Gorai mangroves & village lanes".
+   6 cards now fit the existing 3-column desktop grid exactly (3+3,
+   no orphan), so no CSS change was needed there — the round1
+   last-child-centering rule simply doesn't match at this count and
+   was left in place as a harmless safety net for if the list grows
+   again later.
+3. **Stays redesign** (the big one): replaced the paragraph + bullet
+   list + price note + check-in box + overlapping "Exclusive booking"
+   card with an intro line, an 8-tile icon grid (4x2 desktop / 2-col
+   mobile, `<ul>` with `aria-hidden` icons), 2 "good to know" chips,
+   and 3 buttons (WhatsApp filled, Call outline, new **Book on
+   Airbnb** outline button replacing Round 1's separate Airbnb
+   link/card). Photo/content layout uses CSS `order` so one markup
+   structure naturally gives photo-on-top on mobile and
+   content-left/photo-right on desktop, with the photo stretching to
+   match the content column's height (grid `align-items:stretch`,
+   capped at `max-height:520px`). Added a `"stays": true` flag to
+   `gallery.json` (new `staysSlide` filter) so the section's photo is
+   an explicit choice, not an implicit "whichever slide happens to be
+   last" convention. Added 5 new icons (lock, users, racket, utensils,
+   car) to `icons.njk`. Measured result: section height dropped to
+   626px at 1440px (target was "roughly one screen, ~800px") and is
+   visibly much shorter on mobile. No `amenityFeature` schema change
+   needed — every amenity word from the old bullet list is still
+   literally present in a tile label or sub-label, just reformatted.
+4. **FAQ heading**: removed the "Got questions?" eyebrow, H2 now
+   reads "FAQs". Nav/footer label was already changed to "FAQs" in
+   change 1 (same array).
+5. **FAQ exclusive accordion**: `name="faq"` on every `<details>` —
+   tested this is enough **on its own, with JavaScript fully
+   disabled**, to get native exclusive-open behavior in this
+   Chromium build (confirmed: click a second question, the first
+   closes, zero script ran). The JS in `main.js` is purely the
+   documented fallback (closes other open items on `toggle`) plus the
+   "don't leave the opened question hidden under the sticky header"
+   scroll correction, which native HTML has no way to do on its own.
+   First question defaults open via a Nunjucks `{% if loop.first %}`
+   check, not a separate data flag.
+
+Also updated `AGENTS.md`: Section 3's page-structure list reordered
+and the Stays entry fully rewritten to the new compact spec, the
+Nearby attractions list and card-count math, the FAQ entry (heading
+text, exclusivity requirement), Section 3a rewritten for the new
+button-not-link Airbnb treatment, two stale example references
+("Frequently asked questions" H2 example, "exactly 7 cards" checklist
+line), and two new Definition-of-Done checklist items (FAQ
+exclusivity, Stays compactness).
+
+Screenshots of Celebrations/Stays/Nearby/FAQs at 390px and 1440px are
+in `design-references/review-round2/`.
+
+Verified after Round 2: `npm run check` still zero errors/zero broken
+links (99 links). Lighthouse mobile (indexable:true): **Performance
+96, Accessibility 100, Best Practices 100, SEO 100** — all four
+categories clear the >=95 bar the Round 2 brief asked for explicitly
+(Round 1's brief only required it informally; this time it's a named
+"Done when" checkbox, and it's met).
 
 ## Known issues / TODO (all owner-side, not code)
 

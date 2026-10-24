@@ -164,35 +164,42 @@ Rules:
 
 Use semantic HTML5: `<header>`, `<nav>`, `<main>`, `<section id="...">` each with its own `<h2>`, `<footer>`. Exactly **one `<h1>`**. Set `lang="en-IN"`.
 
-1. **Header (sticky, slim):** logo (SVG/PNG from `/src/assets/brand/`) + name, anchor nav (Gallery · Stays · Celebrations · Nearby · Location · Reviews · FAQ · Contact), and a primary button "WhatsApp us". On mobile, use a hamburger menu that is accessible (button with `aria-expanded`, focus trap, Esc closes).
+1. **Header (sticky, slim):** logo (SVG/PNG from `/src/assets/brand/`) + name, anchor nav (Gallery · Celebrations · Stays · Nearby · Location · Reviews · FAQs · Contact), and a primary button "WhatsApp us". On mobile, use a hamburger menu that is accessible (button with `aria-expanded`, focus trap, Esc closes). The sticky header's height must be compensated for on every in-page anchor jump (`scroll-padding-top` on `html`, or equivalent) so a section's heading never lands hidden underneath it.
 2. **Hero (`#home`):** the full-bleed first gallery image (or `hero: true` image) is the **LCP element**. Use `fetchpriority="high"`, no lazy-loading, and preload the right size. Overlay:
    - **H1:** `Venkatesh Villa Gorai: Private 4BHK Villa near Gorai Beach, Mumbai`
    - Sub-line: `Weekend stays, birthdays, haldi & mehendi, anniversaries and team outings, with a lawn, rooftop gazebo and sunset views.`
    - Two CTAs: **"Check dates on WhatsApp"** (stay message) and **"Plan an event"** (event message).
    - Trust chips: `4 Bedrooms · 3 Bathrooms · Lawn · Rooftop Gazebo · Caretaker on-site`.
 3. **Gallery carousel (`#gallery`):** admin-managed from `gallery.json` (Section 6). Accessible, swipeable, keyboard-operable, **no autoplay by default** (if autoplay is enabled in config: pause on hover/focus, include a visible Pause button, and respect `prefers-reduced-motion`). Show the caption under each slide. Add a thumbnail strip and a lightbox. **All slide `<img>` elements must be in the server-rendered HTML** (not injected by JS) with real `alt` text.
-4. **Stays (`#stays`):** overnight staycation for families and friend groups. Rooms and beds summary, what's included, check-in/out, house rules (link to accordion). If `showPrices` is true show "Starting from ₹X"; otherwise show "Rates vary by date & group size; ask on WhatsApp". An optional secondary Airbnb link belongs here too (see Section 3a).
-5. **Celebrations & events (`#celebrations`):** cards for Birthday parties · Anniversaries · Haldi, Mehendi & Sangeet (one merged card) · Engagement · Intimate weddings · Corporate team outings · Day picnic (one-day outing) · New Year's Eve. 8 cards total, 4 columns × 2 rows on desktop/laptop (≥1024px), 2 columns on tablet and mobile, equal card heights. Each card: one line, an icon (inline SVG), and a WhatsApp CTA with an event-specific pre-filled message. Add a note: "In-house décor & catering available, or bring your own setup."
-6. **Nearby attractions (`#nearby`):** cards from `attractions.json` with name, one line, approximate distance/time, and a "Directions" link (`https://www.google.com/maps/dir/?api=1&destination=<encoded name or lat,lng>`). 7 cards (Gorai Beach, Global Vipassana Pagoda, EsselWorld & Water Kingdom, Manori Beach, Uttan Beach & Our Lady of Velankanni Shrine, Keshav Srushti, Gorai mangroves & village lanes). Lay out in balanced rows (3-column grid; if a lone card is left in the final row, centre it rather than leaving it stranded on one side).
+4. **Celebrations & events (`#celebrations`):** cards for Birthday parties · Anniversaries · Haldi, Mehendi & Sangeet (one merged card) · Engagement · Intimate weddings · Corporate team outings · Day picnic (one-day outing) · New Year's Eve. 8 cards total, 4 columns × 2 rows on desktop/laptop (≥1024px), 2 columns on tablet and mobile, equal card heights. Each card: one line, an icon (inline SVG), and a WhatsApp CTA with an event-specific pre-filled message. Add a note: "In-house décor & catering available, or bring your own setup."
+5. **Stays (`#stays`):** compact and icon-led, understandable in 5 seconds — not a long paragraph. Comes **after** Celebrations, not before (overnight stays are the secondary use case for this villa; events/day-visits are the primary one). Layout: two columns on desktop (~55% content / ~45% photo, photo height matches the content column's height, max ~520px, object-fit:cover), photo stacked on top (16:9) on mobile — the same markup achieves both via CSS `order`, not duplicated markup. Content, top to bottom:
+   - Eyebrow + H2 (`Weekend stays in Gorai`)
+   - One short intro line (not a paragraph)
+   - An 8-tile icon feature grid (`<ul>`, icons `aria-hidden="true"`, visible text labels) — entire villa, 4 bedrooms, 3 bathrooms, up to 15 guests, lawn & rooftop, games, kitchen + caretaker, parking. 4 columns × 2 rows on desktop, 2 columns on mobile. Lighter/smaller than the Celebrations cards.
+   - Two small "good to know" chips (flexible check-in/out — or the real times once `site.json`'s `checkIn`/`checkOut` are both set — and a rates-vary note)
+   - Three buttons: **WhatsApp** (filled primary), **Call** (outline secondary), **Book on Airbnb** (outline tertiary — see Section 3a)
+   - Microcopy under the buttons steering celebrations/events to WhatsApp/call instead of Airbnb
+   - Keep the schema `amenityFeature` in sync with whatever the tiles say.
+6. **Nearby attractions (`#nearby`):** cards from `attractions.json` with name, one line, approximate distance/time, and a "Directions" link (`https://www.google.com/maps/dir/?api=1&destination=<encoded name or lat,lng>`). 6 cards (Gorai Beach, Global Vipassana Pagoda, EsselWorld & Water Kingdom, Manori Beach, Uttan Beach & Our Lady of Velankanni Shrine, Keshav Srushti). 3 columns × 2 rows on desktop, 2 columns on tablet, 1 column on mobile — 6 cards divides evenly into that grid, so there should never be an orphan card at this count; if the list length changes later and leaves one stranded in the final row, centre it rather than leaving it on one side.
 7. **Location & how to reach (`#location`):**
     - **Google Maps embed iframe, loaded directly** (not a click-to-load facade): `loading="lazy"` so it only fetches once scrolled near, fixed height (~360px desktop, ~280px mobile) so there's no layout shift, rounded corners matching the card style, `title` and `referrerpolicy="no-referrer-when-downgrade"` set.
     - A single **"Get directions"** primary button (`googleDirectionsUrl`). Do not duplicate it with a separate "Open in Google Maps" button — one clear action only.
     - **How to reach, shown as one connected journey** (not three separate unconnected boxes): heading "By train + ferry (easiest from Borivali)", a stepper (horizontal on desktop, vertical timeline on mobile) connecting Borivali (W) Station → Gorai Jetty → Gorai side → Venkatesh Villa, with the mode and time written on each connector (Auto / Ferry · 5 min / Auto · 15 min). Mark it up as an ordered list (`<ol>`) with the connector labels as visible text, not icon-only. Below it, a separate small "Coming by car?" block with one line ("Google Maps will show you the best road route") and the same Get directions button.
     - Facts: from Borivali station, auto → Gorai Jetty → 5-minute ferry → auto (~15 min) to the villa. Gorai Beach is a 5-minute drive from the villa (state this once — in the section intro, the Gorai Beach nearby-attraction card and the FAQ; do not repeat it a fourth time in this section).
 8. **Reviews (`#reviews`):** render real reviews from `reviews.json` with name, source (Google/Airbnb), month and text. Add a "Read more on Google" link and, after a stay, a "Leave us a Google review" link. **Do not add `AggregateRating`/`Review` schema for the business's own reviews**, because Google does not show self-serving review stars for LocalBusiness. Hide the section (and its nav link) if the array is empty. The villa's Google listing already has 4 genuine reviews (5.0). The owner may copy short excerpts into `reviews.json` with the reviewer's first name and a "View on Google" link to `googleMapsUrl`. Never invent or edit review text.
-9. **FAQ (`#faq`):** an accessible accordion (`<details>/<summary>`) from `faq.json`. Visible HTML is mandatory. See Section 7 for the schema decision.
+9. **FAQs (`#faq`):** H2 reads **"FAQs"**, no eyebrow label above it. An accessible accordion (`<details>/<summary>`) from `faq.json`. Visible HTML is mandatory. **Only one question open at a time** — give every `<details>` the same `name="faq"` attribute (current Chrome/Edge/Safari/Firefox enforce exclusivity from that alone, even with JS disabled); add a small JS `toggle`-event fallback that closes other open items, for older browsers. The first question is open by default. Opening an item must not leave its question hidden under the sticky header — correct the scroll position if needed, skipping the smooth animation under `prefers-reduced-motion`. See Section 7 for the schema decision.
 10. **Contact (`#contact`):** a card with WhatsApp as the filled **primary** button and Call as the secondary **outline** button (not the other way round — WhatsApp is the primary conversion channel), plus Instagram and Google Maps links. Do **not** repeat the full street address here — the footer already carries the crawlable NAP block; keep this card to the action buttons and quick links only.
-11. **Footer:** NAP again (as text, not an image), quick links, an "Airbnb" text link alongside Instagram and Google Maps (when `airbnbUrl` is set), © year, "Made with ♥ in Gorai".
+11. **Footer:** NAP again (as text, not an image), quick links (same order as the header nav), an "Airbnb" text link alongside Instagram and Google Maps (when `airbnbUrl` is set), © year, "Made with ♥ in Gorai".
 12. **Floating WhatsApp button:** bottom-right on all viewports, 56px, high contrast, with `aria-label="Chat on WhatsApp"`. It must not cover content or the browser UI on iOS/Android (respect safe-area insets).
 
 ### 3a. Airbnb: secondary channel for stays only
 
-WhatsApp and Call remain the primary booking channels everywhere on the site. Airbnb is a secondary, lower-emphasis option, shown **only in the Stays section**, directly below the main WhatsApp/Call buttons, because Airbnb's own terms don't allow booking parties/events through a listing — only overnight stays.
+WhatsApp and Call remain the primary booking channels everywhere on the site. Airbnb is a secondary, lower-emphasis option, shown **only in the Stays section**, as the third of its three buttons (WhatsApp filled primary, Call outline secondary, Airbnb outline tertiary), because Airbnb's own terms don't allow booking parties/events through a listing — only overnight stays.
 
 - `site.json` carries `airbnbUrl`: the clean listing URL only (strip date/guest/share-id query parameters the owner's copied link may contain).
-- Render it as a small card or outline link, visually weaker than the primary WhatsApp button: label "Prefer booking online? View our Airbnb listing →", a one-line meta description, and a microcopy note that celebrations/events should go through WhatsApp/call instead.
-- **Never** use Airbnb's official embed widget/script (`airbnb_jssdk`) — it's heavy third-party JS, adds Airbnb's own pricing/branding, causes layout shift, and needs extra CSP exceptions. Build a plain static link/card instead; an existing gallery photo may be used as a thumbnail.
-- Airbnb does **not** appear in the hero, Celebrations, the floating button, or the header nav — stays-only.
+- Render it as a real **button** (not a text link), outline/ghost style, visually lighter than the filled WhatsApp button. Use a home icon or a small external-link icon — **never the Airbnb logo** (trademark). Give it `aria-label="Book Venkatesh Villa Gorai on Airbnb (opens in a new tab)"` in addition to its visible label, since "Book on Airbnb" alone doesn't convey that it opens a new tab. A short microcopy line below the three buttons (not attached to the button itself) notes that Airbnb is for overnight stays only and celebrations/events should go through WhatsApp/call.
+- **Never** use Airbnb's official embed widget/script (`airbnb_jssdk`) — it's heavy third-party JS, adds Airbnb's own pricing/branding, causes layout shift, and needs extra CSP exceptions. Build a plain button/link instead.
+- Airbnb does **not** appear in the hero, Celebrations, the floating button, or the header nav — stays-only (plus the footer link, see item 11 above).
 - Add the clean URL to the villa's JSON-LD `sameAs` array (alongside Instagram and the Google Maps link) when set.
 - Link with `target="_blank" rel="noopener"` (no `nofollow` — it's the owner's own listing).
 - When `ga4Id` is set, clicking it fires a GA4 event `airbnb_click` with a `cta_location` param, kept separate from the `generate_lead` event used for WhatsApp/Call.
@@ -230,9 +237,10 @@ Caption format in the carousel: **Name** · Floor: line. When a file name matche
 - Manori Beach: a quieter beach and seafood shacks
 - Uttan Beach & Our Lady of Velankanni Shrine (Uttan): hilltop shrine with sea views
 - Keshav Srushti (Uttan, Bhayandar West): a sprawling green campus with nature trails, a medicinal plant garden, a heritage lake and a gaushala
-- Gorai mangroves & village lanes: slow walks and farm-life vibes
 
-(The Gorai–Borivali ferry jetty is **not** its own attraction card — it duplicates the "How to reach" section's stepper and isn't an attraction in its own right.)
+That's 6 cards, in that order — enough to fill a 3×2 grid evenly on desktop with no orphan. Two were deliberately left out, neither as a drive-by cut:
+- The Gorai–Borivali ferry jetty is **not** its own attraction card — it duplicates the "How to reach" section's stepper and isn't an attraction in its own right.
+- "Gorai mangroves & village lanes" was removed in Round 2 (owner decision) to bring the count to a clean 6 for the 3-column grid.
 
 **Tone:** warm, simple, Mumbai-family voice, English with light Hinglish where natural ("chai", "jhoola"). No exaggeration.
 
@@ -347,7 +355,7 @@ src/_data/gallery.json   ← order, captions, alt text, show/hide
   - `Birthday parties, haldi & mehendi at our villa`
   - `Nearby attractions in Gorai`
   - `How to reach Venkatesh Villa from Borivali`
-  - `Frequently asked questions`
+  - `FAQs` (the actual H2 text, per Section 3 item 9 — short on purpose, the SEO phrase-matching here matters less for a heading this generic)
 - Body copy of **600–1,000 visible words** in total across sections. Mention each target phrase **once or twice, naturally**. No keyword stuffing, no hidden text, no blocks of city or area names.
 - Mention nearby place names where they are genuinely useful (Gorai Beach, Borivali West, Manori, Uttan, Mira–Bhayandar, Global Vipassana Pagoda, EsselWorld). This builds local relevance.
 - Include the alternate spellings "Vyankatesh / व्यंकटेश" **once**, in a natural sentence (e.g. "Venkatesh Villa Gorai (व्यंकटेश व्हिला)").
@@ -516,9 +524,11 @@ It must include these sections:
 - [ ] The map iframe is marked `loading="lazy"` and isn't fetched until scrolled near (check the Network tab).
 - [ ] The word "pool" appears **only** in FAQ answer #2 and its matching FAQPage markup (grep the output: title, meta, alt text, headings and the villa schema must be clean).
 - [ ] The removed sections (Spaces grid, Amenities grid, Food section) are **not** on the page.
-- [ ] Celebrations shows exactly 8 cards (4×2 on desktop) in the order given in Section 3; Nearby shows exactly 7 cards with no stranded single card on desktop.
+- [ ] Celebrations shows exactly 8 cards (4×2 on desktop) in the order given in Section 3; Stays comes after Celebrations, not before; Nearby shows exactly 6 cards in a 3×2 grid on desktop.
 - [ ] The "how to reach" stepper reads as one connected journey (not three separate boxes) on both 390px and 1440px.
-- [ ] Every address link opens `googleMapsUrl`; every "Get directions" opens `googleDirectionsUrl`; the Call button uses +91 98212 95016; WhatsApp uses +91 97695 41897; the Airbnb link (Stays section + footer) uses the clean `airbnbUrl` with no embed script loaded.
+- [ ] Every address link opens `googleMapsUrl`; every "Get directions" opens `googleDirectionsUrl`; the Call button uses +91 98212 95016; WhatsApp uses +91 97695 41897; the Airbnb link (Stays section's "Book on Airbnb" button + footer link) uses the clean `airbnbUrl` with no embed script loaded.
+- [ ] Only one FAQ item is open at a time (test by clicking a second question — the first must close), and this still holds with JavaScript disabled.
+- [ ] The Stays section is compact: roughly one screen height or less at 1440px, and visibly shorter than a long-paragraph layout at 390px, with no overlapping/overlaid card.
 - [ ] The page builds and works under a github.io sub-path and at the root.
 
 When finished, reply with: what you built, how to run it, the Lighthouse scores, the list of every remaining `TODO_OWNER` value, and the next three steps for the owner.
