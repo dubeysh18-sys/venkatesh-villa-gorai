@@ -23,8 +23,18 @@ Last updated: 2026-10-24 by Codex (GitHub Pages deployment)
 - First CI run of the deployment fixes passed build/HTML/links but Lighthouse
   could not launch downloaded Chromium under Ubuntu's AppArmor sandbox rules.
   Workflow now uses the runner's installed Google Chrome (sandbox retained),
-  removing the unpinned Playwright download. Next: verify the new CI run and
-  public website.
+  removing the unpinned Playwright download.
+- Deployment succeeded: https://github.com/dubeysh18-sys/venkatesh-villa-gorai/actions/runs/40110971174
+  (site commit `0230d5d`). Build and deploy jobs both passed. CI Lighthouse
+  cleared Performance/Accessibility/Best Practices thresholds; the only
+  warning was staging SEO 69, expected from the noindex policy.
+- Live verification passed: homepage HTTP 200 with the correct title and
+  canonical; all 101 referenced photo/font/script/brand assets returned 200;
+  robots.txt, webmanifest and branded 404 page returned 200. WhatsApp and
+  Call links use their correct, separate phone numbers. No TODO text rendered.
+- Deployment is complete. Future `main` pushes redeploy automatically.
+  Remaining owner tasks: custom domain/indexing when ready, optional review
+  excerpts, Google review link, and check-in/check-out times.
 
 The previous build notes below are historical; this deployment section
 supersedes statements that the repository has not been pushed or that
