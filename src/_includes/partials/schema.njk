@@ -1,0 +1,10 @@
+{#
+  One JSON-LD @graph: LodgingBusiness/EventVenue + WebSite + WebPage + FAQPage.
+  Built in JS (see eleventy.config.js "schemaGraph" shortcode) rather than
+  assembled here, since Nunjucks has no clean way to conditionally merge
+  optional fields (geo, email, checkIn/Out, sameAs) into an object.
+  Deliberately no AggregateRating/Review node (Section 7.3: self-serving
+  reviews are not eligible for rich results) and no VacationRental type
+  (restricted to Hotel Center partners).
+#}
+<script type="application/ld+json">{% schemaGraph site, copy, faq, buildDate %}</script>

@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <address class="nap">
+        <strong>{{ site.name }}</strong><br>
+        {{ site.address.displayLine }}<br>
+        <a href="tel:{{ site.phoneE164 }}">{{ site.phoneDisplay }}</a>
+      </address>
+      <p>&copy; {{ currentYear }} {{ site.name }}. {{ copy.footer.tagline }}</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      {% for item in copy.nav | filterNav(reviews) %}
+      <a href="{{ item.href }}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+  {% if site.ga4Id | isSet %}
+  <div class="container">
+    <p class="site-footer__privacy">This site uses Google Analytics to understand how visitors find us. No personal data is sold or shared beyond Google's standard analytics processing.</p>
+  </div>
+  {% endif %}
+</footer>

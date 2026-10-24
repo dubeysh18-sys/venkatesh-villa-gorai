@@ -1,0 +1,22 @@
+{% from "partials/icons.njk" import icon %}
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow">{{ copy.faqSection.eyebrow }}</span>
+      <h2>{{ copy.faqSection.heading }}</h2>
+      <p>{{ copy.faqSection.intro }}</p>
+    </div>
+
+    <div class="faq-list">
+      {% for item in faq %}
+      <details class="faq-item">
+        <summary>
+          <span>{{ item.question }}</span>
+          {{ icon("chevron-down") }}
+        </summary>
+        <p class="faq-item__answer">{{ item.answer }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

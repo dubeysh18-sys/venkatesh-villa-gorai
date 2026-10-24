@@ -1,0 +1,4 @@
+{% from "partials/icons.njk" import icon %}
+<a class="whatsapp-float" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-cta="whatsapp" data-cta-location="floating_button">
+  {{ icon("chat") }}
+</a>

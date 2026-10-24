@@ -1,0 +1,97 @@
+/* Design tokens extracted from design-references/stitch/DESIGN.md + code.html.
+   See DESIGN_NOTES.md for the full mapping and reasoning. */
+:root {
+  /* ---- Color: brand ---- */
+  --color-primary: #943c19; /* Stitch "primary" (deep terracotta, text-safe on cream) */
+  --color-primary-container: #b4532f; /* AGENTS.md terracotta -- used for solid CTA fills */
+  --color-on-primary: #ffffff;
+  --color-primary-fixed: #ffdbcf;
+
+  --color-secondary: #396759; /* Stitch palm green -- white text on this is 6.45:1, already passes AA, no darkening needed */
+  --color-secondary-container: #b9ead9;
+  --color-on-secondary: #ffffff;
+
+  --color-tertiary: #7b4e00; /* Stitch tertiary -- 6.82:1 on cream surface, used wherever gold appears as TEXT */
+  --color-tertiary-swatch: #e8a445; /* AGENTS.md sunset gold -- decorative fills/icons only (fails AA as text-on-surface, never pair with white/dark text requirements) */
+
+  /* ---- Color: surfaces & ink ---- */
+  --color-background: #fff8f6;
+  --color-surface: #fff8f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff1ec;
+  --color-surface-container: #fdeae4;
+  --color-surface-container-high: #f7e4de;
+  --color-surface-container-highest: #f2ded9;
+  --color-surface-bright: #fff8f6;
+  --color-surface-dim: #e9d6d0;
+
+  --color-ink: #2b2420; /* AGENTS.md ink -- primary body text */
+  --color-on-surface: #231916;
+  --color-on-surface-variant: #56423c;
+  --color-outline: #89726b;
+  --color-outline-variant: #dcc1b8;
+
+  --color-cream: #f7f0e3; /* AGENTS.md cream -- used for section alternation where a warmer tone than surface is wanted */
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* WhatsApp's bright brand green (#25D366) is only ~2:1 contrast with white
+     and fails WCAG AA non-text contrast (3:1) for the floating button icon.
+     Using WhatsApp's own darker brand teal instead keeps it instantly
+     recognizable while passing contrast (white-on-#128c7e is 4.1:1). */
+  --color-whatsapp: #128c7e;
+  --color-whatsapp-hover: #0e6e63;
+
+  /* ---- Typography ---- */
+  --font-headline: "Playfair Display", "Playfair Display Fallback", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --fs-headline-xl: 56px;
+  --lh-headline-xl: 64px;
+  --fs-headline-lg: 40px;
+  --lh-headline-lg: 48px;
+  --fs-headline-md: 32px;
+  --lh-headline-md: 40px;
+  --fs-headline-sm: 24px;
+  --lh-headline-sm: 32px;
+  --fs-body-lg: 18px;
+  --lh-body-lg: 28px;
+  --fs-body-md: 16px;
+  --lh-body-md: 24px;
+  --fs-body-sm: 14px;
+  --lh-body-sm: 20px;
+  --fs-label-md: 14px;
+  --lh-label-md: 20px;
+  --fs-label-sm: 12px;
+  --lh-label-sm: 16px;
+
+  /* Mobile scale-down (DESIGN.md: headline-xl -> 36px, headline-lg -> 28px) */
+  --fs-headline-xl-mobile: 36px;
+  --lh-headline-xl-mobile: 44px;
+  --fs-headline-lg-mobile: 28px;
+  --lh-headline-lg-mobile: 36px;
+
+  /* ---- Spacing ---- */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --gutter: 1.5rem;
+  --margin: 2rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ---- Shadow: soft ambient tints, no hard drop shadows ---- */
+  --shadow-sm: 0 1px 8px rgba(43, 36, 32, 0.06);
+  --shadow-md: 0 8px 24px rgba(43, 36, 32, 0.08);
+  --shadow-lg: 0 16px 40px rgba(47, 93, 80, 0.12);
+
+  --max-width: 1280px;
+}

@@ -1,0 +1,18 @@
+---
+permalink: "site.webmanifest"
+eleventyExcludeFromCollections: true
+---
+{
+  "name": "{{ site.name }}",
+  "short_name": "{{ site.alternateNames[0] }}",
+  "description": "{{ copy.meta.description }}",
+  "start_url": "{{ '/' | url }}",
+  "scope": "{{ '/' | url }}",
+  "display": "standalone",
+  "background_color": "#FFF8F6",
+  "theme_color": "#2F5D50",
+  "icons": [
+    { "src": "{{ '/assets/brand/icon-192.png' | url }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ '/assets/brand/icon-512.png' | url }}", "sizes": "512x512", "type": "image/png" }
+  ]
+}

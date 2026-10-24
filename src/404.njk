@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+permalink: "404.html"
+eleventyExcludeFromCollections: true
+---
+<section class="section not-found">
+  <div class="container">
+    <span class="eyebrow">Page not found</span>
+    <h1 class="headline-lg">We couldn't find that page</h1>
+    <p class="body-lg not-found__text">
+      The page you're looking for may have moved. Head back to the homepage, or message us directly on WhatsApp.
+    </p>
+    <div class="not-found__actions">
+      <a class="btn btn--primary" href="{{ '/' | url }}">Back to homepage</a>
+      <a class="btn btn--outline" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>

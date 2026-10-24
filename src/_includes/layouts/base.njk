@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="no-js">
+<head>
+{% include "partials/meta.njk" %}
+{% include "partials/schema.njk" %}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{% include "partials/header.njk" %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+{% include "partials/whatsapp-float.njk" %}
+<script src="{{ '/assets/js/main.js' | url }}" defer></script>
+{% if site.ga4Id | isSet %}
+<script>
+  (function () {
+    function loadGA() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.ga4Id }}';
+      s.async = true;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', '{{ site.ga4Id }}');
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', function () { setTimeout(loadGA, 1500); });
+    }
+  })();
+</script>
+{% endif %}
+</body>
+</html>

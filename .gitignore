@@ -6,3 +6,5 @@ Thumbs.db
 *.log
 .eleventy-img/
 npm-debug.log*
+.lighthouseci/
+lh-*.json

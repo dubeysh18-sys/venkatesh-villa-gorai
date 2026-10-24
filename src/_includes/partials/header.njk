@@ -1,0 +1,45 @@
+{% from "partials/icons.njk" import icon %}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="#home">
+      <img src="{{ '/assets/brand/logo.svg' | url }}" alt="" width="36" height="36">
+      <span>{{ site.name }}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        {% for item in copy.nav | filterNav(reviews) %}
+        <li><a class="site-nav__link" href="{{ item.href }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="btn btn--secondary btn--sm site-header__cta" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="header">
+        {{ icon("chat") }} WhatsApp us
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        {{ icon("menu") }}
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" data-open="false" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mobile-nav__head">
+    <span class="site-header__brand"><span>{{ site.name }}</span></span>
+    <button type="button" class="mobile-nav__close" data-nav-close>
+      {{ icon("close") }}
+      <span class="visually-hidden">Close menu</span>
+    </button>
+  </div>
+  <ul class="mobile-nav__list">
+    {% for item in copy.nav | filterNav(reviews) %}
+    <li><a class="mobile-nav__link" href="{{ item.href }}" data-nav-close>{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+  <a class="btn btn--primary mobile-nav__cta" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="mobile_nav">
+    {{ icon("chat") }} WhatsApp us
+  </a>
+</div>

@@ -1,0 +1,13 @@
+---
+permalink: "robots.txt"
+eleventyExcludeFromCollections: true
+---
+{% if site.indexable -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.baseUrl }}/sitemap.xml
+{%- else -%}
+User-agent: *
+Disallow: /
+{%- endif %}

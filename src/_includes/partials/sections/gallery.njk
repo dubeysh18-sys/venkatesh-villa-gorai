@@ -1,0 +1,62 @@
+{% from "partials/icons.njk" import icon %}
+{% set slides = gallery.slides | visibleSlides %}
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="gallery__head">
+      <div>
+        <span class="eyebrow">Photo gallery</span>
+        <h2>A look around the villa</h2>
+      </div>
+      <p>Real photos of Venkatesh Villa Gorai &mdash; the facade, grounds and a few rooms. More get added as we photograph the rest.</p>
+    </div>
+
+    <section class="carousel"
+         data-carousel
+         data-autoplay="{{ gallery.autoplay | string | lower }}"
+         data-interval="{{ gallery.intervalSeconds }}"
+         aria-roledescription="carousel"
+         aria-label="Venkatesh Villa Gorai photos">
+      <div class="carousel__viewport">
+        <div class="carousel__track" data-carousel-track tabindex="0" aria-label="Photo slides, scrollable">
+          {% for slide in slides %}
+          <figure class="carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ slides.length }}">
+            {% image slide.file, slide.alt, { widths: [480, 768, 1080, 1600], sizes: "100vw", loading: "lazy" } %}
+            {% if slide.caption %}
+            <figcaption class="carousel__caption">{{ slide.caption }}</figcaption>
+            {% endif %}
+          </figure>
+          {% endfor %}
+        </div>
+        <div class="carousel__controls">
+          <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous photo">{{ icon("chevron-left") }}</button>
+          <button type="button" class="carousel__btn" data-carousel-next aria-label="Next photo">{{ icon("chevron-right") }}</button>
+        </div>
+      </div>
+
+      <div class="carousel__meta">
+        <p class="carousel__status" data-carousel-status aria-live="polite">Photo 1 of {{ slides.length }}</p>
+        {% if gallery.autoplay %}
+        <button type="button" class="carousel__play" data-carousel-playpause aria-pressed="true">
+          {{ icon("pause") }} <span data-carousel-playpause-label>Pause</span>
+        </button>
+        {% endif %}
+      </div>
+
+      <div class="carousel__thumbs" role="tablist" aria-label="Choose a photo">
+        {% for slide in slides %}
+        <button type="button" class="carousel__thumb" data-carousel-thumb data-index="{{ loop.index0 }}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-current="{{ 'true' if loop.first else 'false' }}" aria-label="Photo {{ loop.index }}: {{ slide.caption or slide.alt }}">
+          {% image slide.file, "", { widths: [120], sizes: "72px" } %}
+        </button>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <div class="lightbox" data-lightbox>
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label="Close photo viewer">{{ icon("close") }}</button>
+    <figure>
+      <img class="lightbox__img" data-lightbox-img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
+      <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+    </figure>
+  </div>
+</section>

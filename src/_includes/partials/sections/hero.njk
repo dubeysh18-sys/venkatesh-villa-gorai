@@ -1,0 +1,30 @@
+{% from "partials/icons.njk" import icon %}
+{% set hero = gallery.slides | heroSlide %}
+<section class="hero" id="home">
+  <div class="hero__media">
+    {% image hero.file, hero.alt, { widths: [480, 768, 1080, 1600, 2000], sizes: "100vw", fetchpriority: "high" } %}
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <span class="hero__eyebrow">{{ icon("leaf") }} {{ copy.hero.eyebrow }}</span>
+    <h1>{{ copy.hero.h1 }}</h1>
+    <p class="hero__subline">{{ copy.hero.subline }}</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.stay) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="hero_stay">
+        {{ icon("chat") }} {{ copy.hero.ctaStay }}
+      </a>
+      <a class="btn btn--ghost-light" href="#celebrations">
+        {{ copy.hero.ctaEvent }} {{ icon("arrow-right") }}
+      </a>
+    </div>
+    <div class="hero__chips">
+      {% set chipIcons = ["bed", "bath", "grass", "gazebo", "caretaker"] %}
+      {% for chipLabel in copy.hero.trustChips %}
+      <div class="chip{% if loop.last %} chip--wide{% endif %}">
+        {{ icon(chipIcons[loop.index0]) }}
+        <span>{{ chipLabel }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

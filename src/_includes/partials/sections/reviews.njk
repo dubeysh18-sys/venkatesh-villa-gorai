@@ -1,0 +1,40 @@
+{% from "partials/icons.njk" import icon %}
+{% if reviews and reviews.length > 0 %}
+<section class="section section--alt" id="reviews">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow">{{ copy.reviews.eyebrow }}</span>
+      <h2>{{ copy.reviews.heading }}</h2>
+      <p>{{ copy.reviews.intro }}</p>
+    </div>
+
+    <div class="reviews__grid">
+      {% for review in reviews %}
+      <div class="review-card">
+        <div>
+          {% if review.rating %}
+          <div class="review-card__stars" aria-label="{{ review.rating }} out of 5 stars">
+            {% for n in range(0, review.rating) %}{{ icon("star") }}{% endfor %}
+          </div>
+          {% endif %}
+          <p class="review-card__text">&ldquo;{{ review.text }}&rdquo;</p>
+        </div>
+        <div>
+          <p class="review-card__name">{{ review.name }}</p>
+          <span class="review-card__source">{{ review.source }}{% if review.month %} &middot; {{ review.month }}{% endif %}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="reviews__links">
+      {% if site.googleMapsUrl | isSet %}
+      <a class="btn btn--outline" href="{{ site.googleMapsUrl }}" target="_blank" rel="noopener">{{ copy.reviews.readMoreLabel }}</a>
+      {% endif %}
+      {% if site.googleReviewUrl | isSet %}
+      <a class="btn btn--outline" href="{{ site.googleReviewUrl }}" target="_blank" rel="noopener">{{ copy.reviews.leaveReviewLabel }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

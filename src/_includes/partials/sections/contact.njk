@@ -1,0 +1,27 @@
+{% from "partials/icons.njk" import icon %}
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <span class="eyebrow">{{ copy.contact.eyebrow }}</span>
+      <h2>{{ copy.contact.heading }}</h2>
+      <p class="contact-card__intro">{{ copy.contact.intro }}</p>
+
+      <div class="contact-card__actions">
+        <a class="btn btn--secondary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="contact">
+          {{ icon("chat") }} {{ copy.contact.whatsappLabel }} ({{ site.whatsappDisplay }})
+        </a>
+        <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="contact">
+          {{ icon("phone") }} {{ copy.contact.callLabel }}&nbsp;{{ site.phoneDisplay }}
+        </a>
+      </div>
+
+      <div class="contact-card__links">
+        <address class="nap">{{ site.address.displayLine }}</address>
+        {% if site.instagram | isSet %}
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener">{{ icon("instagram") }} {{ copy.contact.instagramLabel }}</a>
+        {% endif %}
+        <a href="{{ site.googleMapsUrl }}" target="_blank" rel="noopener">{{ icon("map-pin") }} Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>

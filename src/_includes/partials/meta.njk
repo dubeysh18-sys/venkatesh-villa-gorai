@@ -1,0 +1,46 @@
+{%- set pageTitle = copy.meta.title -%}
+{%- set pageDescription = copy.meta.description -%}
+{%- set heroSlideData = gallery.slides | heroSlide -%}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDescription }}">
+<link rel="canonical" href="{{ site.baseUrl }}/">
+
+{% if site.indexable %}
+<meta name="robots" content="index, follow">
+{% else %}
+<meta name="robots" content="noindex, nofollow">
+{% endif %}
+
+<meta name="theme-color" content="#2F5D50">
+<link rel="icon" href="{{ '/assets/brand/favicon.ico' | url }}" sizes="32x32">
+<link rel="icon" href="{{ '/assets/brand/favicon.svg' | url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/assets/brand/apple-touch-icon.png' | url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | url }}">
+
+<link rel="preload" href="{{ '/assets/fonts/inter-latin-400-normal.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/playfair-display-latin-600-normal.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+{% heroImagePreload heroSlideData.file %}
+<style>{% inlineCSS "assets/css/tokens.css" %}{% inlineCSS "assets/css/fonts.css" %}{% inlineCSS "assets/css/main.css" %}</style>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDescription }}">
+<meta property="og:url" content="{{ site.baseUrl }}/">
+<meta property="og:image" content="{{ site.baseUrl }}{{ '/images/site/og-image.jpg' | url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ site.name }} — private villa facade at dusk">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+
+{% if site.googleSiteVerification | isSet %}
+<meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
+{% endif %}
+{% if site.bingSiteVerification | isSet %}
+<meta name="msvalidate.01" content="{{ site.bingSiteVerification }}">
+{% endif %}
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://www.google.com https://maps.gstatic.com https://maps.googleapis.com; frame-src https://www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self' {% if site.ga4Id %}https://www.googletagmanager.com https://www.google-analytics.com{% endif %}; connect-src 'self' {% if site.ga4Id %}https://www.google-analytics.com{% endif %}; base-uri 'self'; form-action 'self';">
