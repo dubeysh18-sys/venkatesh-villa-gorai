@@ -1,0 +1,28 @@
+{
+  "name": "venkatesh-villa-gorai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One-page, SEO-first website for Venkatesh Villa Gorai",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "presite": "node scripts/sync-gallery.mjs",
+    "start": "npm run presite && eleventy --serve --incremental",
+    "build": "npm run presite && eleventy",
+    "prebuild-check": "npm run build",
+    "check:html": "html-validate \"_site/**/*.html\"",
+    "check:links": "linkinator _site --silent --skip \"https://.*\"",
+    "check:lhci": "lhci autorun",
+    "check": "npm run check:html && npm run check:links",
+    "check:full": "npm run check && npm run check:lhci"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "@11ty/eleventy-img": "7.1.1",
+    "@lhci/cli": "0.15.1",
+    "html-validate": "11.17.0",
+    "linkinator": "8.1.0"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "autoplay": false,
+  "intervalSeconds": 5,
+  "slides": [
+    {
+      "file": "venkatesh-villa-gorai-front-dusk.png",
+      "alt": "Venkatesh Villa Gorai three-storey villa facade at dusk with palm trees and a rooftop terrace flag, Gorai, Mumbai",
+      "caption": "Welcome to Venkatesh Villa Gorai",
+      "show": true,
+      "hero": true
+    },
+    {
+      "file": "venkatesh-villa-gorai-front-daytime.png",
+      "alt": "Venkatesh Villa Gorai villa front elevation in daylight with paved courtyard and palm trees",
+      "caption": "Our villa by daylight",
+      "show": true,
+      "hero": false
+    },
+    {
+      "file": "venkatesh-villa-gorai-grounds-aerial.webp",
+      "alt": "Aerial view of Venkatesh Villa Gorai's gated courtyard, lawn, parking and garden gazebo with the Mumbai skyline in the distance",
+      "caption": "Gate, courtyard and lawn from above",
+      "show": true,
+      "hero": false
+    },
+    {
+      "file": "venkatesh-villa-gorai-kashi-kutir-gazebo.webp",
+      "alt": "Wooden garden gazebo named Kashi Kutir with bench seating under a red tiled roof at Venkatesh Villa Gorai, lit up at night",
+      "caption": "Kashi Kutir · Ground floor: our wooden gazebo in the garden, made for long chai chats",
+      "show": true,
+      "hero": false
+    },
+    {
+      "file": "venkatesh-villa-gorai-living-entrance.webp",
+      "alt": "Lit entrance hallway at Venkatesh Villa Gorai with staircase, kitchenette and the front door open to the courtyard at night",
+      "caption": "Entrance hall & kitchenette",
+      "show": true,
+      "hero": false
+    },
+    {
+      "file": "venkatesh-villa-gorai-staircase-bedroom.webp",
+      "alt": "Interior staircase at Venkatesh Villa Gorai leading past a bedroom with a glimpse of the balcony view",
+      "caption": "Staircase & bedroom",
+      "show": true,
+      "hero": false
+    }
+  ]
+}
