@@ -1,0 +1,79 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium (for Lighthouse CI)
+        run: |
+          npx playwright install --with-deps chromium
+          echo "CHROME_PATH=$(find "$HOME/.cache/ms-playwright" -iname chrome -type f | head -1)" >> "$GITHUB_ENV"
+
+      # A project page (https://<user>.github.io/<repo>/) is served under a
+      # sub-path, so every internal link must be prefixed with /<repo>/.
+      # The one exception is a "<user>.github.io" repo itself, which GitHub
+      # always serves at the domain root with no prefix. If a CNAME file
+      # exists (custom domain configured), the site also serves from the
+      # root, so PATH_PREFIX is forced to "/" either way.
+      - name: Compute PATH_PREFIX
+        id: prefix
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          if [ -f "src/CNAME" ] || [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "value=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=/$REPO_NAME/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build site
+        env:
+          PATH_PREFIX: ${{ steps.prefix.outputs.value }}
+        run: npm run build
+
+      - name: HTML validate + link check
+        run: npm run check
+
+      - name: Lighthouse CI (fails below the Section 7.6 / 12 thresholds)
+        run: npx lhci autorun --config=./lighthouserc.json
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

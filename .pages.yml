@@ -1,0 +1,153 @@
+# Pages CMS config (https://app.pagescms.org) -- a free, friendly admin
+# panel the owner can log into with their GitHub account to edit photos and
+# text without touching code or JSON directly. See README.md "Change
+# carousel photos (b) Pages CMS" for the owner-facing walkthrough.
+#
+# NOTE for whoever maintains this: Pages CMS's field schema has changed
+# shape between versions before. If a save from the CMS stops producing
+# valid JSON (check the commit it makes on GitHub), re-check this file
+# against https://pagescms.org/docs first -- don't just delete fields to
+# make an error go away.
+
+media:
+  input: src/images/gallery
+  output: src/images/gallery
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: gallery
+    label: Carousel photos
+    type: file
+    path: src/_data/gallery.json
+    format: json
+    fields:
+      - name: autoplay
+        label: Autoplay slides
+        type: boolean
+      - name: intervalSeconds
+        label: Seconds between slides (if autoplay is on)
+        type: number
+      - name: slides
+        label: Photos
+        type: list
+        fields:
+          - name: file
+            label: Photo
+            type: image
+          - name: alt
+            label: Alt text (describes the photo, for screen readers & SEO)
+            type: string
+          - name: caption
+            label: Caption shown on the slide
+            type: string
+            required: false
+          - name: show
+            label: Show this photo on the site
+            type: boolean
+          - name: hero
+            label: Use as the homepage's main photo
+            type: boolean
+
+  - name: site
+    label: Business details (phone, address, links)
+    type: file
+    path: src/_data/site.json
+    format: json
+    fields:
+      - name: name
+        type: string
+      - name: tagline
+        type: string
+      - name: phoneE164
+        label: "Call number (format: +91XXXXXXXXXX)"
+        type: string
+      - name: phoneDisplay
+        label: Call number, as shown on the site
+        type: string
+      - name: whatsappNumber
+        label: "WhatsApp number (digits only, with country code, e.g. 9198...)"
+        type: string
+      - name: whatsappDisplay
+        label: WhatsApp number, as shown on the site
+        type: string
+      - name: email
+        type: string
+        required: false
+      - name: instagram
+        type: string
+        required: false
+      - name: googleMapsUrl
+        type: string
+      - name: googleDirectionsUrl
+        type: string
+      - name: googleReviewUrl
+        type: string
+        required: false
+      - name: airbnbUrl
+        type: string
+        required: false
+      - name: checkIn
+        type: string
+        required: false
+      - name: checkOut
+        type: string
+        required: false
+      - name: showPrices
+        type: boolean
+      - name: indexable
+        label: Let Google index this site (only turn on once the real domain is live)
+        type: boolean
+      - name: ga4Id
+        label: Google Analytics 4 ID (leave blank to disable analytics)
+        type: string
+        required: false
+
+  - name: copy
+    label: Page text
+    type: file
+    path: src/_data/copy.json
+    format: json
+    fields:
+      - name: hero
+        type: object
+        fields:
+          - { name: eyebrow, type: string }
+          - { name: h1, type: string }
+          - { name: subline, type: string }
+          - { name: ctaStay, type: string }
+          - { name: ctaEvent, type: string }
+      - name: celebrations
+        type: object
+        fields:
+          - { name: heading, type: string }
+          - { name: intro, type: string }
+          - { name: partnerNote, type: string }
+
+  - name: faq
+    label: FAQ questions
+    type: file
+    path: src/_data/faq.json
+    format: json
+    fields:
+      - name: items
+        type: list
+        root: true
+        fields:
+          - { name: question, type: string }
+          - { name: answer, type: text }
+
+  - name: reviews
+    label: Guest reviews
+    type: file
+    path: src/_data/reviews.json
+    format: json
+    fields:
+      - name: items
+        type: list
+        root: true
+        fields:
+          - { name: name, type: string }
+          - { name: source, label: "Source (e.g. Google, Airbnb)", type: string }
+          - { name: month, type: string, required: false }
+          - { name: rating, type: number, required: false }
+          - { name: text, type: text }
