@@ -737,6 +737,38 @@ h3,
   font-size: var(--fs-body-sm);
   color: var(--color-on-surface-variant);
 }
+.stays__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/* Secondary, deliberately lower-emphasis than the WhatsApp/Call buttons
+   above -- an outline/text treatment, no filled background. */
+.airbnb-card {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-outline-variant);
+}
+.airbnb-card__link {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.airbnb-card__meta {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-surface-variant);
+}
+.airbnb-card__note {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-label-sm);
+  color: var(--color-on-surface-variant);
+  font-style: italic;
+}
 .stays__media {
   position: relative;
 }
@@ -1212,6 +1244,26 @@ h3,
 }
 .site-footer__links a:hover {
   color: var(--color-on-surface);
+}
+.site-footer__social {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  font-size: var(--fs-label-sm);
+}
+@media (min-width: 768px) {
+  .site-footer__social {
+    justify-content: flex-start;
+  }
+}
+.site-footer__social a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.site-footer__social a:hover {
+  text-decoration: underline;
 }
 .site-footer__privacy {
   max-width: 40rem;

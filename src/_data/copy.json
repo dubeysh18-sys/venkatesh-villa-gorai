@@ -41,9 +41,15 @@
     ],
     "checkInLabel": "Check-in",
     "checkOutLabel": "Check-out",
+    "flexibleTimesNote": "Check-in and check-out timings are flexible; confirm them with us on WhatsApp.",
     "priceNote": "Rates vary by date & group size; ask on WhatsApp for a quote.",
     "priceNoteShown": "Starting from",
-    "capacityNote": "Comfortably sleeps up to 15 guests overnight."
+    "capacityNote": "Comfortably sleeps up to 15 guests overnight.",
+    "ctaWhatsapp": "Check dates on WhatsApp",
+    "ctaCall": "Call",
+    "airbnbLabel": "Prefer booking online? View our Airbnb listing →",
+    "airbnbMeta": "Villa in Mumbai · 4 bedrooms · 3 bathrooms · for overnight stays only",
+    "airbnbNote": "For celebrations and events, please WhatsApp or call us directly."
   },
   "celebrations": {
     "eyebrow": "Celebrations & events",

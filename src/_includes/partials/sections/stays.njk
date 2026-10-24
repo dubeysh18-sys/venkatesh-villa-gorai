@@ -28,6 +28,25 @@
           {% if site.showPrices %}{{ copy.stays.priceNoteShown }}{% else %}{{ copy.stays.priceNote }}{% endif %}
           &middot; {{ copy.stays.capacityNote }}
         </p>
+
+        <div class="stays__ctas">
+          <a class="btn btn--primary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.stay) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="stays">
+            {{ icon("chat") }} {{ copy.stays.ctaWhatsapp }}
+          </a>
+          <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="stays">
+            {{ icon("phone") }} {{ copy.stays.ctaCall }}
+          </a>
+        </div>
+
+        {% if site.airbnbUrl | isSet %}
+        <div class="airbnb-card">
+          <a class="airbnb-card__link" href="{{ site.airbnbUrl }}" target="_blank" rel="noopener" data-cta="airbnb" data-cta-location="stays">
+            {{ copy.stays.airbnbLabel }}
+          </a>
+          <p class="airbnb-card__meta">{{ copy.stays.airbnbMeta }}</p>
+          <p class="airbnb-card__note">{{ copy.stays.airbnbNote }}</p>
+        </div>
+        {% endif %}
       </div>
 
       <div class="stays__media">

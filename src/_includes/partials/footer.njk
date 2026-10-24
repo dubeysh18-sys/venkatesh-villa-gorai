@@ -6,6 +6,15 @@
         {{ site.address.displayLine }}<br>
         <a href="tel:{{ site.phoneE164 }}">{{ site.phoneDisplay }}</a>
       </address>
+      <nav class="site-footer__social" aria-label="Social and listing links">
+        {% if site.instagram | isSet %}
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>
+        {% endif %}
+        <a href="{{ site.googleMapsUrl }}" target="_blank" rel="noopener">Google Maps</a>
+        {% if site.airbnbUrl | isSet %}
+        <a href="{{ site.airbnbUrl }}" target="_blank" rel="noopener" data-cta="airbnb" data-cta-location="footer">Airbnb</a>
+        {% endif %}
+      </nav>
       <p>&copy; {{ currentYear }} {{ site.name }}. {{ copy.footer.tagline }}</p>
     </div>
     <nav class="site-footer__links" aria-label="Footer">

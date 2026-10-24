@@ -200,13 +200,16 @@
     }
   });
 
-  /* ---------------- GA4 lead-click tracking ---------------- */
+  /* ---------------- GA4 click tracking ---------------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-cta]");
     if (!el || typeof window.gtag !== "function") return;
-    window.gtag("event", "generate_lead", {
-      method: el.getAttribute("data-cta"),
-      cta_location: el.getAttribute("data-cta-location") || "unknown",
-    });
+    var method = el.getAttribute("data-cta");
+    var ctaLocation = el.getAttribute("data-cta-location") || "unknown";
+    if (method === "airbnb") {
+      window.gtag("event", "airbnb_click", { cta_location: ctaLocation });
+    } else {
+      window.gtag("event", "generate_lead", { method: method, cta_location: ctaLocation });
+    }
   });
 })();
