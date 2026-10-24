@@ -42,7 +42,8 @@
       "alt": "Interior staircase at Venkatesh Villa Gorai leading past a bedroom with a glimpse of the balcony view",
       "caption": "Staircase & bedroom",
       "show": true,
-      "hero": false
+      "hero": false,
+      "stays": true
     }
   ]
 }

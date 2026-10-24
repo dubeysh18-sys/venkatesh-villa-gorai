@@ -29,27 +29,24 @@
   "stays": {
     "eyebrow": "Overnight staycations",
     "heading": "Weekend stays in Gorai",
-    "intro": "Venkatesh Villa Gorai is rented out to one group at a time, so the whole 4BHK villa, lawn and rooftop are yours alone for the stay. It's a short drive from Gorai Beach, built for families and friend groups who want a quiet break without leaving Mumbai.",
-    "roomsSummary": "4 bedrooms · 3 bathrooms · living & dining area · fully-equipped kitchen",
-    "included": [
-      "4 comfortable bedrooms across two floors, with the entire villa reserved for your group only",
-      "3 bathrooms with running hot water",
-      "Open lawn, garden swing and rooftop terrace with a gazebo for sunset hangouts",
-      "Badminton and table tennis for the group",
-      "Fully-equipped kitchen for your own cooking, plus a caretaker on-site for assistance",
-      "On-site parking and a gated, walled compound"
+    "intro": "The whole villa, lawn and rooftop, just for your group. A quiet break 5 minutes from Gorai Beach, without leaving Mumbai.",
+    "tiles": [
+      { "icon": "lock", "label": "Entire villa", "sub": "one group at a time" },
+      { "icon": "bed", "label": "4 bedrooms", "sub": "across 2 floors" },
+      { "icon": "bath", "label": "3 bathrooms", "sub": "with hot water" },
+      { "icon": "users", "label": "Up to 15 guests", "sub": "for overnight stays" },
+      { "icon": "sun", "label": "Lawn & rooftop", "sub": "swing + sunset gazebo" },
+      { "icon": "racket", "label": "Games", "sub": "badminton & table tennis" },
+      { "icon": "utensils", "label": "Kitchen + caretaker", "sub": "cook or get help" },
+      { "icon": "car", "label": "Parking", "sub": "gated, walled compound" }
     ],
-    "checkInLabel": "Check-in",
-    "checkOutLabel": "Check-out",
-    "flexibleTimesNote": "Check-in and check-out timings are flexible; confirm them with us on WhatsApp.",
-    "priceNote": "Rates vary by date & group size; ask on WhatsApp for a quote.",
-    "priceNoteShown": "Starting from",
-    "capacityNote": "Comfortably sleeps up to 15 guests overnight.",
+    "chipFlexibleTimes": "Flexible check-in/out",
+    "chipRates": "Rates vary by date & group size",
     "ctaWhatsapp": "Check dates on WhatsApp",
     "ctaCall": "Call",
-    "airbnbLabel": "Prefer booking online? View our Airbnb listing →",
-    "airbnbMeta": "Villa in Mumbai · 4 bedrooms · 3 bathrooms · for overnight stays only",
-    "airbnbNote": "For celebrations and events, please WhatsApp or call us directly."
+    "ctaAirbnb": "Book on Airbnb",
+    "airbnbAriaLabel": "Book Venkatesh Villa Gorai on Airbnb (opens in a new tab)",
+    "microcopy": "Airbnb is for overnight stays only. For celebrations and events, WhatsApp or call us."
   },
   "celebrations": {
     "eyebrow": "Celebrations & events",

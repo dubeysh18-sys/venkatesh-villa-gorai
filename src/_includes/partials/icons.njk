@@ -138,6 +138,21 @@
 {%- elif name == "load" -%}
 <svg {{ common | safe }}><path d="M3 12a9 9 0 1 1 3 6.7"/><polyline points="3 16 3 21 8 21"/></svg>
 
+{%- elif name == "lock" -%}
+<svg {{ common | safe }}><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+
+{%- elif name == "users" -%}
+<svg {{ common | safe }}><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 12.2c2 .4 3.5 2.3 3.5 4.4"/></svg>
+
+{%- elif name == "racket" -%}
+<svg {{ common | safe }}><ellipse cx="9" cy="8" rx="6" ry="6.5"/><line x1="9" y1="5" x2="9" y2="11"/><line x1="6" y1="8" x2="12" y2="8"/><line x1="13.2" y1="12.2" x2="20" y2="19"/></svg>
+
+{%- elif name == "utensils" -%}
+<svg {{ common | safe }}><path d="M7 3v7a2 2 0 0 1-2 2v0"/><path d="M5 3v7"/><path d="M9 3v7"/><line x1="7" y1="12" x2="7" y2="21"/><path d="M17 3c-1.7 0-3 2-3 5s1.3 5 3 5v8"/></svg>
+
+{%- elif name == "car" -%}
+<svg {{ common | safe }}><path d="M4 16V12l2-5h12l2 5v4"/><path d="M4 16h16"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/><line x1="7" y1="10" x2="17" y2="10"/></svg>
+
 {%- else -%}
 <svg {{ common | safe }}><circle cx="12" cy="12" r="9"/></svg>
 {%- endif -%}

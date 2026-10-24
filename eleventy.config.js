@@ -171,6 +171,15 @@ eleventyConfig.addFilter("jsonify", function (obj) {
     );
   });
 
+  // Picks the gallery photo flagged "stays": true for the Stays section
+  // (a bedroom/living-room shot, ideally); falls back to the last visible
+  // slide if nothing is flagged yet, so the section never breaks while the
+  // owner hasn't tagged a photo.
+  eleventyConfig.addFilter("staysSlide", function (slides) {
+    const visible = slides.filter((s) => s.show && !s.missing);
+    return visible.find((s) => s.stays) || visible[visible.length - 1];
+  });
+
   eleventyConfig.addFilter("visibleSlides", function (slides) {
     return slides.filter((s) => s.show && !s.missing);
   });

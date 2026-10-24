@@ -698,154 +698,135 @@ h3,
   display: none;
 }
 
-/* ---------- Stays ---------- */
+/* ---------- Stays (compact, icon-led -- Round 2) ---------- */
 .stays__grid {
   display: grid;
-  gap: var(--space-xl);
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
 }
 @media (min-width: 1024px) {
   .stays__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55% 45%;
+    gap: var(--space-xl);
   }
+  /* DOM order is media-then-content (so mobile naturally stacks photo on
+     top), but on desktop the content should read on the left. */
+  .stays__content {
+    order: -1;
+  }
+}
+.stays__media {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 9;
+}
+@media (min-width: 1024px) {
+  .stays__media {
+    aspect-ratio: auto;
+    height: 100%;
+    max-height: 520px;
+  }
+}
+.stays__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .stays__intro {
   color: var(--color-on-surface-variant);
-  margin-block: var(--space-md) var(--space-lg);
+  margin-top: var(--space-md);
 }
-.stays__facts {
+
+.stays__tiles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
 }
-.stays__flexible-times {
+@media (min-width: 1024px) {
+  .stays__tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.stays-tile {
   display: flex;
   align-items: flex-start;
   gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-surface);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  color: var(--color-on-surface-variant);
-  font-size: var(--fs-body-sm);
-  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-md);
 }
-.stays__flexible-times svg {
+.stays-tile svg {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   margin-top: 1px;
   color: var(--color-primary);
 }
-.fact-card {
-  background: var(--color-surface);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
-.fact-card__label {
-  display: block;
-  font-size: var(--fs-label-sm);
-  color: var(--color-on-surface-variant);
-  margin-bottom: var(--space-xs);
-}
-.fact-card__value {
-  font-family: var(--font-headline);
-  font-size: var(--fs-headline-sm);
-  color: var(--color-primary);
-}
-.check-list {
+.stays-tile__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
 }
-.check-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
+.stays-tile__label {
+  font-weight: 700;
+  font-size: var(--fs-label-md);
+  color: var(--color-on-surface);
+  line-height: 1.2;
 }
-.check-list svg {
-  width: 20px;
-  height: 20px;
-  color: var(--color-secondary);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.stays__price {
-  margin-top: var(--space-lg);
-  font-size: var(--fs-body-sm);
+.stays-tile__sub {
+  font-size: var(--fs-label-sm);
   color: var(--color-on-surface-variant);
 }
+
+.stays__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+.stays__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-label-sm);
+  font-weight: 500;
+}
+.stays__chip svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+.stays__chip-symbol {
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
 .stays__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
   margin-top: var(--space-lg);
 }
-
-/* Secondary, deliberately lower-emphasis than the WhatsApp/Call buttons
-   above -- an outline/text treatment, no filled background. */
-.airbnb-card {
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-outline-variant);
-}
-.airbnb-card__link {
-  display: inline-block;
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.airbnb-card__meta {
-  margin-top: var(--space-xs);
-  font-size: var(--fs-body-sm);
-  color: var(--color-on-surface-variant);
-}
-.airbnb-card__note {
-  margin-top: var(--space-xs);
-  font-size: var(--fs-label-sm);
-  color: var(--color-on-surface-variant);
-  font-style: italic;
-}
-.stays__media {
-  position: relative;
-}
-.stays__media img {
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  width: 100%;
-}
-.stays__badge {
-  position: relative;
-  margin-top: calc(var(--space-lg) * -1);
-  margin-inline: var(--space-lg);
-  background: var(--color-surface);
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  max-width: 20rem;
-}
-@media (min-width: 768px) {
-  .stays__badge {
-    position: absolute;
-    bottom: calc(var(--space-lg) * -1);
-    left: calc(var(--space-lg) * -1);
-    margin: 0;
+@media (max-width: 639px) {
+  .stays__ctas {
+    flex-direction: column;
+  }
+  .stays__ctas .btn {
+    width: 100%;
   }
 }
-.stays__badge strong {
-  display: block;
-  font-family: var(--font-headline);
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-}
-.stays__badge p {
+.stays__microcopy {
+  margin-top: var(--space-md);
+  font-size: var(--fs-label-sm);
   color: var(--color-on-surface-variant);
-  font-size: var(--fs-body-sm);
 }
 
 /* ---------- Celebrations ---------- */

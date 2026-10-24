@@ -2,36 +2,38 @@
 <section class="section section--alt" id="stays">
   <div class="container">
     <div class="stays__grid">
-      <div>
+      <div class="stays__media">
+        {% set staysImage = gallery.slides | staysSlide %}
+        {% image staysImage.file, staysImage.alt, { widths: [480, 768, 1080], sizes: "(min-width: 1024px) 45vw, 100vw" } %}
+      </div>
+
+      <div class="stays__content">
         <span class="eyebrow">{{ copy.stays.eyebrow }}</span>
         <h2>{{ copy.stays.heading }}</h2>
         <p class="stays__intro">{{ copy.stays.intro }}</p>
 
-        {% if site.checkIn | isSet and site.checkOut | isSet %}
-        <div class="stays__facts">
-          <div class="fact-card">
-            <span class="fact-card__label">{{ copy.stays.checkInLabel }}</span>
-            <span class="fact-card__value">{{ site.checkIn }}</span>
-          </div>
-          <div class="fact-card">
-            <span class="fact-card__label">{{ copy.stays.checkOutLabel }}</span>
-            <span class="fact-card__value">{{ site.checkOut }}</span>
-          </div>
-        </div>
-        {% else %}
-        <p class="stays__flexible-times">{{ icon("clock") }} {{ copy.stays.flexibleTimesNote }}</p>
-        {% endif %}
-
-        <ul class="check-list">
-          {% for line in copy.stays.included %}
-          <li>{{ icon("check-circle") }} <span>{{ line }}</span></li>
+        <ul class="stays__tiles">
+          {% for tile in copy.stays.tiles %}
+          <li class="stays-tile">
+            {{ icon(tile.icon) }}
+            <span class="stays-tile__text">
+              <span class="stays-tile__label">{{ tile.label }}</span>
+              <span class="stays-tile__sub">{{ tile.sub }}</span>
+            </span>
+          </li>
           {% endfor %}
         </ul>
 
-        <p class="stays__price">
-          {% if site.showPrices %}{{ copy.stays.priceNoteShown }}{% else %}{{ copy.stays.priceNote }}{% endif %}
-          &middot; {{ copy.stays.capacityNote }}
-        </p>
+        <div class="stays__chips">
+          <span class="stays__chip">
+            {{ icon("clock") }}
+            {% if site.checkIn | isSet and site.checkOut | isSet %}{{ site.checkIn }}&ndash;{{ site.checkOut }}{% else %}{{ copy.stays.chipFlexibleTimes }}{% endif %}
+          </span>
+          <span class="stays__chip">
+            <span class="stays__chip-symbol" aria-hidden="true">&#8377;</span>
+            {{ copy.stays.chipRates }}
+          </span>
+        </div>
 
         <div class="stays__ctas">
           <a class="btn btn--primary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.stay) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="stays">
@@ -40,26 +42,14 @@
           <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="stays">
             {{ icon("phone") }} {{ copy.stays.ctaCall }}
           </a>
-        </div>
-
-        {% if site.airbnbUrl | isSet %}
-        <div class="airbnb-card">
-          <a class="airbnb-card__link" href="{{ site.airbnbUrl }}" target="_blank" rel="noopener" data-cta="airbnb" data-cta-location="stays">
-            {{ copy.stays.airbnbLabel }}
+          {% if site.airbnbUrl | isSet %}
+          <a class="btn btn--outline" href="{{ site.airbnbUrl }}" target="_blank" rel="noopener" aria-label="{{ copy.stays.airbnbAriaLabel }}" data-cta="airbnb" data-cta-location="stays">
+            {{ icon("open-in-new") }} {{ copy.stays.ctaAirbnb }}
           </a>
-          <p class="airbnb-card__meta">{{ copy.stays.airbnbMeta }}</p>
-          <p class="airbnb-card__note">{{ copy.stays.airbnbNote }}</p>
+          {% endif %}
         </div>
-        {% endif %}
-      </div>
 
-      <div class="stays__media">
-        {% set staysImage = gallery.slides | visibleSlides | last %}
-        {% image staysImage.file, staysImage.alt, { widths: [480, 768, 1080], sizes: "(min-width: 1024px) 40vw, 100vw" } %}
-        <div class="stays__badge">
-          <strong>Exclusive booking</strong>
-          <p>The entire villa is rented to one group at a time, so your stay is completely private.</p>
-        </div>
+        <p class="stays__microcopy">{{ copy.stays.microcopy }}</p>
       </div>
     </div>
   </div>
