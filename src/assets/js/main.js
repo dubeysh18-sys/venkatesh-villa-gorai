@@ -200,6 +200,31 @@
     }
   });
 
+  /* ---------------- FAQ: exclusive accordion ---------------- */
+  // name="faq" on every <details> already makes current Chrome/Edge/
+  // Safari/Firefox close the other open item natively -- this listener is
+  // just the fallback for browsers that don't support that yet, plus the
+  // "don't leave the opened question hidden under the sticky header" fix.
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq-item[name="faq"]'));
+  faqItems.forEach(function (item) {
+    item.addEventListener("toggle", function () {
+      if (!item.open) return;
+      faqItems.forEach(function (other) {
+        if (other !== item && other.open) other.open = false;
+      });
+      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      requestAnimationFrame(function () {
+        var header = document.querySelector(".site-header");
+        var headerHeight = header ? header.getBoundingClientRect().height : 0;
+        var rect = item.getBoundingClientRect();
+        if (rect.top < headerHeight) {
+          var targetY = window.scrollY + rect.top - headerHeight - 16;
+          window.scrollTo({ top: targetY, behavior: reducedMotion ? "auto" : "smooth" });
+        }
+      });
+    });
+  });
+
   /* ---------------- GA4 click tracking ---------------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-cta]");

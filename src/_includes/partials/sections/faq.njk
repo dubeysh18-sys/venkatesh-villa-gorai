@@ -8,7 +8,7 @@
 
     <div class="faq-list">
       {% for item in faq %}
-      <details class="faq-item">
+      <details class="faq-item" name="faq"{% if loop.first %} open{% endif %}>
         <summary>
           <span>{{ item.question }}</span>
           {{ icon("chevron-down") }}
