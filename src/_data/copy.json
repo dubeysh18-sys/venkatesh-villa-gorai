@@ -118,16 +118,13 @@
     "eyebrow": "Getting here",
     "heading": "How to reach Venkatesh Villa from Borivali",
     "intro": "Venkatesh Villa Gorai sits in Culvem Village, Gorai, just a 5-minute drive from Gorai Beach.",
-    "mapCtaLoad": "Load map",
-    "mapCtaOpen": "Open in Google Maps",
     "mapCtaDirections": "Get directions",
     "howToReachSteps": [
       { "icon": "rickshaw", "label": "Auto", "text": "From Borivali (West) station, take an auto to Gorai Jetty." },
       { "icon": "ferry", "label": "Ferry · 5 min", "text": "A short ferry ride takes you across the creek to the Gorai side." },
       { "icon": "rickshaw", "label": "Auto · 15 min", "text": "Another auto from the jetty gets you to the villa in about 15 minutes." }
     ],
-    "byCarNote": "Driving instead? Tap \"Get directions\" and Google Maps will pick the best road route at that time.",
-    "beachNote": "Gorai Beach is just a 5-minute drive from the villa."
+    "byCarNote": "Driving instead? Tap \"Get directions\" and Google Maps will pick the best road route at that time."
   },
   "reviews": {
     "eyebrow": "Guest reviews",

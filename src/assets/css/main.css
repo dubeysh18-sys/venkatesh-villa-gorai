@@ -951,8 +951,7 @@ h3,
   font-size: var(--fs-body-sm);
   color: var(--color-on-surface-variant);
 }
-.location__by-car,
-.location__beach-note {
+.location__by-car {
   display: flex;
   align-items: flex-start;
   gap: var(--space-xs);
@@ -960,8 +959,7 @@ h3,
   font-size: var(--fs-body-sm);
   margin-bottom: var(--space-md);
 }
-.location__by-car svg,
-.location__beach-note svg {
+.location__by-car svg {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
@@ -974,63 +972,26 @@ h3,
   gap: var(--space-md);
 }
 
-.map-facade {
-  position: relative;
+/* Google Maps embed, loaded directly (loading="lazy" keeps it from being
+   fetched until the visitor scrolls near it). Fixed height per breakpoint
+   instead of a computed aspect-ratio keeps it simple and prevents layout
+   shift regardless of the column's actual width. */
+.map-embed-direct {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  aspect-ratio: 4 / 3;
+  height: 280px;
 }
-.map-facade img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@media (min-width: 1024px) {
+  .map-embed-direct {
+    height: 360px;
+  }
 }
-.map-facade__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(35, 25, 22, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-lg);
-}
-.map-facade__card {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-lg);
-  text-align: center;
-  max-width: 22rem;
-}
-.map-facade__card svg {
-  width: 40px;
-  height: 40px;
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
-}
-.map-facade__card p {
-  color: var(--color-on-surface-variant);
-  font-size: var(--fs-body-sm);
-  margin-block: var(--space-xs) var(--space-md);
-}
-.map-embed {
-  display: none;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-.map-embed iframe {
+.map-embed-direct iframe {
   width: 100%;
   height: 100%;
   border: 0;
-}
-.map-embed[data-loaded="true"] {
   display: block;
-}
-.map-embed[data-loaded="true"] + .map-facade {
-  display: none;
 }
 
 /* ---------- Reviews ---------- */

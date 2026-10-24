@@ -200,19 +200,6 @@
     }
   });
 
-  /* ---------------- Click-to-load map ---------------- */
-  document.querySelectorAll("[data-map-load]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var embed = document.querySelector("[data-map-embed]");
-      if (!embed) return;
-      var iframe = embed.querySelector("iframe");
-      if (iframe && !iframe.src.startsWith("http")) {
-        iframe.src = iframe.getAttribute("data-map-src");
-      }
-      embed.setAttribute("data-loaded", "true");
-    });
-  });
-
   /* ---------------- GA4 lead-click tracking ---------------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-cta]");
