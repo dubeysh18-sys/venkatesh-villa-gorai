@@ -26,7 +26,13 @@ Last updated: 2026-10-24 by Codex (mobile layout review)
 - `npm run build` and `npm run check:full` passed existing gates: zero HTML
   errors / 99 links valid; Lighthouse Accessibility 100, Best Practices 100,
   Performance 91 (existing warning policy), SEO 69 (intentional noindex).
-- Next: push this commit, verify GitHub CI and the updated public page.
+- Published commit `b18aa99`: GitHub build and deployment succeeded in run
+  https://github.com/dubeysh18-sys/venkatesh-villa-gorai/actions/runs/40112619316.
+  CI cleared Performance >=95, Accessibility >=95 and Best Practices >=95;
+  only the intentional staging SEO 69 warning remains.
+- Public-site Playwright checks passed at 360px, 390px and 1440px, including
+  phone tap targets, menu, gallery, accordion, CTA visibility, and no-JS content.
+- Mobile review is complete and live at the same GitHub Pages URL.
 
 ## Deployment continuation (2026-10-24)
 
