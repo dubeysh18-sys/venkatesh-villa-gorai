@@ -10,7 +10,8 @@ eleventyExcludeFromCollections: true
     <lastmod>{{ buildDate }}</lastmod>
     {%- for slide in gallery.slides | visibleSlides %}
     <image:image>
-      <image:loc>{{ site.baseUrl }}{% imageUrl slide.file %}</image:loc>
+      {% set slideUrl %}{% imageUrl slide.file %}{% endset %}
+      <image:loc>{{ slideUrl | absoluteUrl(site.baseUrl) }}</image:loc>
       <image:caption>{{ slide.caption or slide.alt }}</image:caption>
     </image:image>
     {%- endfor %}

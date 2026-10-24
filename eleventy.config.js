@@ -7,6 +7,17 @@ const cleanCss = new CleanCSS({ level: 2 });
 
 const pathPrefix = process.env.PATH_PREFIX || "/";
 
+// baseUrl is the complete public site address, including a project path.
+// Generated image URLs already contain pathPrefix; add it only once.
+function absoluteUrl(relativeUrl, baseUrl) {
+  let relative = relativeUrl || "/";
+  if (/^https?:\/\//.test(relative)) return relative;
+  if (pathPrefix !== "/" && relative.startsWith(pathPrefix)) {
+    relative = relative.slice(pathPrefix.length);
+  }
+  return new URL(relative.replace(/^\/+/, ""), `${baseUrl.replace(/\/+$/, "")}/`).href;
+}
+
 export default function (eleventyConfig) {
   // Static passthroughs
   eleventyConfig.addPassthroughCopy("src/assets/css");
@@ -149,6 +160,7 @@ export default function (eleventyConfig) {
   );
 
   // ---- Filters ----
+  eleventyConfig.addFilter("absoluteUrl", absoluteUrl);
   eleventyConfig.addFilter("whatsappUrl", function (number, message) {
     const text = encodeURIComponent(message || "");
     return `https://wa.me/${number}?text=${text}`;
@@ -202,16 +214,10 @@ eleventyConfig.addFilter("jsonify", function (obj) {
   eleventyConfig.addShortcode(
     "schemaGraph",
     function (site, content, faq, buildDate) {
-      const url = (relativeUrl) => {
-        const cleanPrefix = pathPrefix.endsWith("/") ? pathPrefix.slice(0, -1) : pathPrefix;
-        const cleanUrl = relativeUrl.startsWith("/") ? relativeUrl : `/${relativeUrl}`;
-        return `${cleanPrefix}${cleanUrl}`;
-      };
-
       const villaId = `${site.baseUrl}/#villa`;
       const websiteId = `${site.baseUrl}/#website`;
       const webpageId = `${site.baseUrl}/#webpage`;
-      const ogImage = `${site.baseUrl}${url("/images/site/og-image.jpg")}`;
+      const ogImage = absoluteUrl("/images/site/og-image.jpg", site.baseUrl);
 
       const amenities = [
         "Lawn",
@@ -235,7 +241,7 @@ eleventyConfig.addFilter("jsonify", function (obj) {
         url: `${site.baseUrl}/`,
         telephone: site.phoneE164,
         image: [ogImage],
-        logo: `${site.baseUrl}${url("/assets/brand/logo.svg")}`,
+        logo: absoluteUrl("/assets/brand/logo.svg", site.baseUrl),
         address: {
           "@type": "PostalAddress",
           streetAddress: `${site.address.street}, ${site.address.locality}`,

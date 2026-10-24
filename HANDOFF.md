@@ -1,5 +1,31 @@
 # HANDOFF: Venkatesh Villa Gorai website
-Last updated: 2026-10-24 by Claude Code (Round 2 owner review applied)
+Last updated: 2026-10-24 by Codex (GitHub Pages deployment)
+
+## Deployment continuation (2026-10-24)
+
+- Repository: https://github.com/dubeysh18-sys/venkatesh-villa-gorai (`main`).
+- Pages enabled with GitHub Actions as its source and HTTPS enforced.
+- Website: https://dubeysh18-sys.github.io/venkatesh-villa-gorai/.
+- Preserved the existing uncommitted deployment work: full public `baseUrl`
+  and separate root-prefix validation / project-prefix deployment builds.
+- Fixed duplicate project paths in canonical, Open Graph, schema image/logo,
+  and sitemap image URLs. `baseUrl` includes the complete public site path;
+  the `absoluteUrl` filter adds each path only once.
+- CI now uses Node 24, matching the installed local runtime and dependencies.
+- `indexable` stays false per AGENTS.md's GitHub Pages staging rule.
+- Local install, build, HTML validation and all 99 internal links passed.
+- Project-prefix build passed: 101 asset paths resolve, canonical and OG URLs
+  contain the project path once, one H1, no TODO text or private references.
+- Lighthouse passed the existing CI gates: Accessibility 100, Best Practices
+  100; Performance 91-94 and SEO 69 are warnings under the existing policy
+  (SEO is reduced intentionally by staging noindex/robots settings).
+- Synced the lockfile's clean-css entry to the already-pinned package version.
+- Next action: push this deployment commit, then verify the Actions result
+  and public website.
+
+The previous build notes below are historical; this deployment section
+supersedes statements that the repository has not been pushed or that
+`baseUrl` is still `https://example.com`.
 
 ## Build steps
 - [x] 1 Scaffold & config

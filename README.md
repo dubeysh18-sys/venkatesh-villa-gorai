@@ -103,6 +103,12 @@ The Reviews section on the site only appears once this file has at least one ent
 
 ## 5. Go live on GitHub Pages (free)
 
+Website address: **https://dubeysh18-sys.github.io/venkatesh-villa-gorai/**.
+The repository is `dubeysh18-sys/venkatesh-villa-gorai`. GitHub Pages uses
+GitHub Actions and HTTPS. Future pushes to `main` rebuild this address.
+Keep `baseUrl` set to the full website address without a trailing slash,
+including `/venkatesh-villa-gorai` while using this GitHub Pages address.
+
 1. Make sure all your changes are committed and pushed to the `main` branch on GitHub.
 2. On github.com, open this repository → **Settings → Pages**.
 3. Under "Build and deployment" → **Source**, choose **GitHub Actions**.

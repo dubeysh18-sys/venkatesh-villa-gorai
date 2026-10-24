@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -51,9 +51,17 @@ jobs:
             echo "value=/$REPO_NAME/" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Build site
-        env:
-          PATH_PREFIX: ${{ steps.prefix.outputs.value }}
+      # html-validate/linkinator/Lighthouse all resolve root-relative URLs
+      # (the ones every page emits, e.g. /assets/main.js) against whatever
+      # is physically at _site/'s own root. That only lines up when the
+      # build was made with PATH_PREFIX "/" -- a build made with a real
+      # sub-path prefix emits /venkatesh-villa-gorai/assets/main.js, which
+      # none of these tools can resolve against a plain directory/localhost
+      # scan (there's no such nested folder; the prefix is a GitHub Pages
+      # *serving* concern, not a file-layout one). So: build once at root
+      # for every local/CI check, then rebuild with the real prefix only
+      # for the artifact that actually gets deployed.
+      - name: Build site (root prefix, for checks)
         run: npm run build
 
       - name: HTML validate + link check
@@ -61,6 +69,11 @@ jobs:
 
       - name: Lighthouse CI (fails below the Section 7.6 / 12 thresholds)
         run: npx lhci autorun --config=./lighthouserc.json
+
+      - name: Build site (real PATH_PREFIX, for deploy)
+        env:
+          PATH_PREFIX: ${{ steps.prefix.outputs.value }}
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
