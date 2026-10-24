@@ -208,6 +208,18 @@ h3,
 .btn--secondary:hover {
   background: #2c4f44;
 }
+/* A button that carries a text label (not just an icon, like the floating
+   WhatsApp button) needs full 4.5:1 text contrast, not just 3:1 -- white on
+   --color-whatsapp (#128C7E) is only ~4.1:1. WhatsApp's own darkest brand
+   teal (#075E54) is ~7.7:1 and still unmistakably "WhatsApp". */
+.btn--whatsapp {
+  background: #075e54;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+.btn--whatsapp:hover {
+  background: #054840;
+}
 .btn--outline {
   background: var(--color-surface);
   color: var(--color-on-surface);
@@ -392,11 +404,15 @@ h3,
 .hero__scrim {
   position: absolute;
   inset: 0;
+  /* Strengthened from an earlier, lighter gradient after measuring actual
+     pixel contrast behind the H1 on a real hero photo -- the top-left
+     sample point came out at ~4.07:1, fine for H1's large-text size
+     (needs 3:1) but with less margin than wanted. */
   background: linear-gradient(
     to top,
-    rgba(35, 25, 22, 0.85) 0%,
-    rgba(35, 25, 22, 0.45) 50%,
-    rgba(35, 25, 22, 0.2) 100%
+    rgba(35, 25, 22, 0.88) 0%,
+    rgba(35, 25, 22, 0.55) 50%,
+    rgba(35, 25, 22, 0.32) 100%
   );
 }
 .hero__content {
@@ -697,6 +713,25 @@ h3,
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
+}
+.stays__flexible-times {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  background: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-on-surface-variant);
+  font-size: var(--fs-body-sm);
+  margin-bottom: var(--space-lg);
+}
+.stays__flexible-times svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--color-primary);
 }
 .fact-card {
   background: var(--color-surface);
@@ -1313,4 +1348,36 @@ h3,
   gap: var(--space-md);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* ---------- Print / "Save as PDF" ---------- */
+@media print {
+  /* Browsers drop background colors/images by default when printing --
+     without this the hero's dark scrim (and every filled button) vanish,
+     which is exactly what made the hero heading look faded and the
+     WhatsApp button look like plain grey text in a PDF export. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .whatsapp-float,
+  .nav-toggle,
+  .mobile-nav,
+  .carousel__controls,
+  .carousel__play,
+  .skip-link {
+    display: none !important;
+  }
+  .hero {
+    min-height: 0;
+    page-break-inside: avoid;
+  }
+  .hero__scrim {
+    background: linear-gradient(
+      to top,
+      rgba(35, 25, 22, 0.92) 0%,
+      rgba(35, 25, 22, 0.6) 50%,
+      rgba(35, 25, 22, 0.35) 100%
+    );
+  }
 }

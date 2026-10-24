@@ -7,7 +7,7 @@
       <p class="contact-card__intro">{{ copy.contact.intro }}</p>
 
       <div class="contact-card__actions">
-        <a class="btn btn--secondary" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="contact">
+        <a class="btn btn--whatsapp" href="{{ site.whatsappNumber | whatsappUrl(copy.whatsappMessages.general) }}" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="contact">
           {{ icon("chat") }} {{ copy.contact.whatsappLabel }} ({{ site.whatsappDisplay }})
         </a>
         <a class="btn btn--outline" href="tel:{{ site.phoneE164 }}" data-cta="call" data-cta-location="contact">
@@ -16,7 +16,6 @@
       </div>
 
       <div class="contact-card__links">
-        <address class="nap">{{ site.address.displayLine }}</address>
         {% if site.instagram | isSet %}
         <a href="{{ site.instagram }}" target="_blank" rel="noopener">{{ icon("instagram") }} {{ copy.contact.instagramLabel }}</a>
         {% endif %}

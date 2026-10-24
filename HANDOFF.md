@@ -1,5 +1,5 @@
 # HANDOFF: Venkatesh Villa Gorai website
-Last updated: 2026-10-24 by Claude Code
+Last updated: 2026-10-24 by Claude Code (Round 1 owner review applied)
 
 ## Build steps
 - [x] 1 Scaffold & config
@@ -23,10 +23,14 @@ not a code task.
 **Everything works.** `npm run build` produces a complete `_site/`:
 header/nav (desktop + accessible mobile drawer), hero, photo gallery
 (accessible carousel + lightbox + thumbnails, all real `<img>`s in the
-server-rendered HTML), stays, celebrations (10 event cards), nearby
-attractions, location (click-to-load map facade), reviews (hidden
-while `reviews.json` is empty), FAQ accordion, contact, footer, and a
-floating WhatsApp button. 404 page included.
+server-rendered HTML), stays (with a secondary Airbnb option), 8
+celebrations cards (4x2 on desktop), 7 nearby-attraction cards,
+location (a connected "how to reach" journey stepper + a
+directly-embedded lazy-loaded map), reviews (hidden while
+`reviews.json` is empty), FAQ accordion, contact, footer (NAP +
+Instagram/Maps/Airbnb), and a floating WhatsApp button. 404 page
+included. See "Change rounds → Round 1" below for everything changed
+since the initial build.
 
 Verified with real tooling, not just a read-through:
 - `npm run check` (html-validate + linkinator over `_site/`): **zero
@@ -44,15 +48,15 @@ Verified with real tooling, not just a read-through:
   tasks (TBT 0ms), zero layout shift (CLS 0).
 - Playwright QA (see `HANDOFF.md` history / commit messages for the
   full list): carousel next/prev/thumbnail/lightbox, FAQ accordion,
-  click-to-load map (iframe `src` stays `about:blank` until clicked,
-  confirmed via DOM inspection — satisfies the "not requested until
-  clicked" QA bullet), mobile nav open/close/Escape, WhatsApp links'
-  encoded text, JS-disabled fallback (content fully visible, gallery
-  degrades to a plain scrollable row), 360px width with **zero**
-  horizontal scroll, keyboard-only walkthrough including the
-  skip-to-content link actually moving focus (not just scrolling),
-  `sync-gallery.mjs` both adding a newly-uploaded photo and safely
-  hiding (never crashing on) a deleted one.
+  the map iframe (`loading="lazy"`, confirmed it isn't eagerly
+  fetched), mobile nav open/close/Escape, WhatsApp links' encoded
+  text, JS-disabled fallback (content fully visible, gallery degrades
+  to a plain scrollable row), 360px width with **zero** horizontal
+  scroll, keyboard-only walkthrough including the skip-to-content
+  link actually moving focus (not just scrolling), `sync-gallery.mjs`
+  both adding a newly-uploaded photo and safely hiding (never
+  crashing on) a deleted one, and (Round 1) real pixel-sampled
+  contrast behind the hero H1/subline on both viewports.
 - `lighthouserc.json` / `.github/workflows/deploy.yml`: Accessibility
   is a hard CI gate (`error`, matches AGENTS.md Section 9 exactly).
   Performance/Best-Practices/SEO are `warn`, not `error` — see "Decisions
@@ -147,12 +151,128 @@ in a browser:
   file doesn't exist — Eleventy's `addPassthroughCopy` doesn't error
   on a missing path.
 
+## Change rounds
+
+### Round 1 (2026-10-24): owner review of the local build
+
+The owner reviewed the initial build and sent 7 numbered change
+requests plus a general redundancy audit. All applied; `AGENTS.md`
+was updated in the same pass (and, since it had never actually been
+written to disk despite being the spec this whole project follows,
+created for the first time from the original prompt text — see commit
+`round1: 3 ...`) so these aren't spec deviations any more, they're
+just what the spec says now. Commits, in order:
+
+1. **Nearby attractions**: added Keshav Srushti (Uttan, Bhayandar
+   West; drive time estimated from the villa's coords since no exact
+   source was given — labelled "approx." as the pattern already does
+   for every other estimated time), removed the Gorai–Borivali ferry
+   jetty card (duplicated the new "how to reach" stepper). 7 cards; a
+   CSS rule centres a lone last-row card in the 3-column desktop grid
+   (`.nearby__grid > :last-child:nth-child(3n + 1)`) rather than
+   leaving it stranded on the left.
+2. **Celebrations**: merged Haldi/Mehendi/Sangeet into one card (its
+   WhatsApp message is literally "haldi / mehendi / sangeet" substituted
+   into the existing `{event}` template — verified the decoded URL
+   matches the owner's exact requested wording). 8 cards, 4×2 grid on
+   desktop (≥1024px), 2 columns below that (was 1 column on mobile,
+   2 from 640px — owner asked for 2 columns on mobile too).
+3. **Location**: removed the "Open in Google Maps" button (kept
+   "Get directions" as the one primary action) and the click-to-load
+   map facade — the embed iframe now loads directly with
+   `loading="lazy"` at a fixed height (280px mobile / 360px desktop,
+   no layout shift). Removed the section's 4th repetition of "Gorai
+   Beach is a 5-minute drive" (already said in the intro, the Gorai
+   Beach nearby card, and FAQ #3). CSP needed no change — `frame-src
+   https://www.google.com` already covered the iframe.
+4. **How to reach**: replaced the three disconnected boxes with one
+   `<ol>` journey (Borivali Station → Gorai Jetty → Gorai side →
+   Venkatesh Villa) where each `<li>` is `[connector, node]` in DOM
+   order — that's what lets the *same* markup read correctly as a
+   horizontal stepper (`flex-row`, desktop) or a vertical timeline
+   (`flex-column`, mobile) with no JS and no duplicated markup. A
+   separate "Coming by car?" card below it holds the Get directions
+   button. Added a `train` icon.
+5. **FAQ**: added "Can we bring our own decorator or caterer?", moved
+   the catering-on-request sentence out of the food answer into it,
+   shortened the Borivali-station answer and linked its "How to
+   reach" phrase to `#location` — but only in the *visible* HTML
+   (`faq.njk` escapes the answer text then replaces that one phrase
+   with a real `<a>`); `schema.njk`'s FAQPage still mirrors the
+   original plain-text answer, confirmed by reading the built
+   JSON-LD directly rather than assuming the filter chain worked.
+6. **Airbnb**: added as a secondary, stays-only channel —
+   `site.json.airbnbUrl` is now the real clean listing URL (was
+   `TODO_OWNER: optional`). Stays section gained its own WhatsApp +
+   Call buttons (it had neither before this round) with the Airbnb
+   link below a divider in a deliberately weaker outline/text style.
+   No Airbnb embed script anywhere (checked the built HTML for
+   `airbnb_jssdk`). Footer gained an Instagram/Google Maps/Airbnb
+   link row. `schemaGraph`'s `sameAs` picked up the URL automatically
+   (it already read `site.airbnbUrl`, it just needed a real value).
+   GA4 clicks on any Airbnb link fire `airbnb_click`, not
+   `generate_lead`.
+7. **Redundancy fixes found in review, plus a few more found during
+   the general audit**:
+   - Removed the full address from the Contact card (footer is now
+     the one crawlable NAP block; Contact keeps only action links).
+   - Stays' two "Ask us" check-in/check-out boxes replaced with one
+     "timings are flexible" line while both are unset; the two boxes
+     come back automatically once `site.json`'s `checkIn`/`checkOut`
+     are both filled in (`{% if site.checkIn | isSet and
+     site.checkOut | isSet %}`).
+   - Contact card: WhatsApp is now the filled primary button, Call
+     the outline secondary (was backwards). **Found a real contrast
+     bug while fixing this**: the existing `--color-whatsapp`
+     (`#128C7E`) only measures ~4.1:1 against white — fine for the
+     *icon-only* floating button (needs 3:1) but not enough for a
+     button carrying visible text (needs 4.5:1). Added a separate,
+     darker `.btn--whatsapp` (`#075E54`, WhatsApp's own darkest brand
+     teal, ~7.7:1) for text buttons instead of reusing the icon-only
+     color. Scoped to the Contact card only, not applied everywhere
+     WhatsApp buttons already existed (hero/header/stays all already
+     passed contrast with their existing primary/secondary colors —
+     changing them wasn't asked for and would be a drive-by redesign).
+   - Hero contrast: didn't just eyeball it — wrote a Playwright
+     script that samples actual pixel colors behind the H1/subline on
+     a real hero photo at both viewports and computes WCAG contrast.
+     One desktop sample came back ~4.07:1 (passes H1's large-text 3:1
+     requirement, but with less margin than wanted). Strengthened the
+     scrim gradient (0.85/0.45/0.2 → 0.88/0.55/0.32 opacity stops);
+     re-measured, every sample is now ≥4.5:1 on both viewports.
+   - Added `@media print` styles: forces background-color printing
+     (`print-color-adjust: exact`) and a near-opaque scrim specifically
+     for print, since browsers drop background colors by default when
+     printing/exporting to PDF — this, not a real rendering bug, is
+     almost certainly why the owner saw a "faded" hero and a "grey"
+     WhatsApp button in their PDF export. Also hides the floating
+     button, nav toggle, mobile nav and carousel controls in print.
+   - **Audited but intentionally left alone, flagged here instead**:
+     the Contact card and the footer now both show an Instagram +
+     Google Maps link, sitting in two adjacent sections. This wasn't
+     redundant before Round 1 (only the footer had them); it became a
+     mild duplication once change 6 added the same two links to the
+     footer per the owner's literal instruction ("next to Instagram
+     and Google Maps"). Left both in place since removing either
+     wasn't asked for — worth a decision from the owner if it reads
+     as repetitive once they see it live.
+
+Screenshots of Celebrations/Stays/Location/FAQ/Contact at 390px and
+1440px are in `design-references/review-round1/`.
+
+Verified after Round 1: `npm run check` (html-validate + linkinator)
+still zero errors/zero broken links; Lighthouse mobile unchanged at
+Accessibility 100 / Best Practices 100 / SEO 100 (indexable:true) /
+Performance 94 — no regression from the new CSS (stepper, Airbnb
+card, print block).
+
 ## Known issues / TODO (all owner-side, not code)
 
-- `site.json` has several `TODO_OWNER` placeholders that render
-  gracefully (the relevant UI just hides): `checkIn`/`checkOut` times,
-  `googleReviewUrl`, `airbnbUrl`. Fill these in whenever the owner has
-  the real values.
+- `site.json` has two remaining `TODO_OWNER` placeholders that render
+  gracefully (the relevant UI just hides): `checkIn`/`checkOut` times
+  (Stays shows one "timings are flexible" line instead of two empty
+  boxes until both are set) and `googleReviewUrl`. `airbnbUrl` was
+  filled in during Round 1.
 - `reviews.json` is empty — add real excerpts once the owner copies
   them from the villa's actual Google reviews (4 reviews, 5.0★,
   already live on the Google Business Profile). Never invent text.

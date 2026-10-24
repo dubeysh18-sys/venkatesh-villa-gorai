@@ -7,16 +7,20 @@
         <h2>{{ copy.stays.heading }}</h2>
         <p class="stays__intro">{{ copy.stays.intro }}</p>
 
+        {% if site.checkIn | isSet and site.checkOut | isSet %}
         <div class="stays__facts">
           <div class="fact-card">
             <span class="fact-card__label">{{ copy.stays.checkInLabel }}</span>
-            <span class="fact-card__value">{% if site.checkIn | isSet %}{{ site.checkIn }}{% else %}Ask us{% endif %}</span>
+            <span class="fact-card__value">{{ site.checkIn }}</span>
           </div>
           <div class="fact-card">
             <span class="fact-card__label">{{ copy.stays.checkOutLabel }}</span>
-            <span class="fact-card__value">{% if site.checkOut | isSet %}{{ site.checkOut }}{% else %}Ask us{% endif %}</span>
+            <span class="fact-card__value">{{ site.checkOut }}</span>
           </div>
         </div>
+        {% else %}
+        <p class="stays__flexible-times">{{ icon("clock") }} {{ copy.stays.flexibleTimesNote }}</p>
+        {% endif %}
 
         <ul class="check-list">
           {% for line in copy.stays.included %}
