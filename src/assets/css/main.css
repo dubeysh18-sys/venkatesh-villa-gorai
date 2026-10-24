@@ -1130,6 +1130,11 @@ h3,
   margin-top: var(--space-md);
   color: var(--color-on-surface-variant);
 }
+.faq-item__answer a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
 
 /* ---------- Contact ---------- */
 .contact-card {

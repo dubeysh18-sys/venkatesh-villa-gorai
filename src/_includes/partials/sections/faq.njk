@@ -14,7 +14,7 @@
           <span>{{ item.question }}</span>
           {{ icon("chevron-down") }}
         </summary>
-        <p class="faq-item__answer">{{ item.answer }}</p>
+        <p class="faq-item__answer">{{ item.answer | escape | replace("How to reach", '<a href="#location">How to reach</a>') | safe }}</p>
       </details>
       {% endfor %}
     </div>

@@ -13,11 +13,15 @@
   },
   {
     "question": "What are the food and catering options?",
-    "answer": "The villa has a fully operational kitchen, and food menus are available at the property. You can also order from our tie-up partners nearby, or through Zomato and Swiggy. For celebrations, we can arrange catering on request. Just tell us your plan."
+    "answer": "The villa has a fully operational kitchen, and food menus are available at the property. You can also order from our tie-up partners nearby, or through Zomato and Swiggy."
+  },
+  {
+    "question": "Can we bring our own decorator or caterer?",
+    "answer": "Absolutely. We offer in-house décor and catering options, and you're equally welcome to bring your own decorator, caterer or setup. Share your plan with us on WhatsApp or call, and we'll help coordinate the space, timings and arrangements."
   },
   {
     "question": "How do we reach the villa from Borivali station?",
-    "answer": "Take an auto from Borivali (West) station to Gorai Jetty. A 5-minute ferry ride takes you across to Gorai, and from there an auto reaches the villa in about 15 minutes. Driving? Tap \"Get directions\" for the road route."
+    "answer": "Auto to Gorai Jetty → 5-minute ferry → 15-minute auto to the villa. See \"How to reach\" above for the full route, or tap Get directions if you're driving."
   },
   {
     "question": "How do we book?",
