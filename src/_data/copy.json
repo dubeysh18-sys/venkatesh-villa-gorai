@@ -10,8 +10,8 @@
     { "label": "Nearby", "href": "#nearby" },
     { "label": "Location", "href": "#location" },
     { "label": "Reviews", "href": "#reviews" },
-    { "label": "FAQs", "href": "#faq" },
-    { "label": "Contact", "href": "#contact" }
+    { "label": "Contact", "href": "#contact" },
+    { "label": "FAQs", "href": "#faq" }
   ],
   "whatsappMessages": {
     "stay": "Hi! I found Venkatesh Villa Gorai on your website. I'd like to check availability for a stay. Dates: __ | Guests: __",
@@ -125,7 +125,7 @@
     "stepperHeading": "By train + ferry (easiest from Borivali)",
     "journey": [
       { "icon": "train", "label": "Borivali (W) Station" },
-      { "icon": "ferry", "label": "Gorai Jetty", "connectorMode": "Auto" },
+      { "icon": "ferry", "label": "Gorai Jetty", "connectorMode": "Auto", "connectorTime": "15 min" },
       { "icon": "leaf", "label": "Gorai side", "connectorMode": "Ferry", "connectorTime": "5 min" },
       { "icon": "map-pin", "label": "Venkatesh Villa", "connectorMode": "Auto", "connectorTime": "15 min" }
     ],
